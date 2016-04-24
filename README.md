@@ -18,9 +18,9 @@ The model should help describe the structure of all the measurements collected, 
       + Metrics are Composable (at least as Monoids) but not necessarily Comparable across projects (i.e. they might be tied to specific project types).
 
   - Score (or Indicator) Layer
-      + [Comparable]( "This doesn't necessarily mean numerical. Although EFF scorecard could be reduced to number of columns.") assembly of metrics. Which might be available for a subset of Projects.
+      + [Comparable](# "This doesn't necessarily mean numerical. Although EFF scorecard could be reduced to number of columns.") assembly of metrics. Which might be available for a subset of Projects.
 
-![](sketch.png)
+![](../images/sketch.png)
 
 Groupings:
   - [Topics](https://code.iilab.org/openintegrity/framework/blob/master/topics.md) - The overall frame of the research question which in our case is what are security and privacy developer practices for specific tools that impact end users?

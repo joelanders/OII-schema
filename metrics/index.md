@@ -2,9 +2,9 @@
 
 ## Aspects
 
-:[](aspects)
+:[](aspects.md)
 
 ## Topics
 
-:[](topics)
+:[](topics.md)
 
