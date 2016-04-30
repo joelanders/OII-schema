@@ -2,9 +2,7 @@
 
 ## Project
 
-### Project identifier
 
- - URI
 
 ### Project name
 
