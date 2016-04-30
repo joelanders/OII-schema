@@ -8,7 +8,7 @@ The model should help describe the structure of all the measurements collected, 
       + How are different types of measurement points described including:
           * Numerical
           * Categorical
-          * Claims -> User claims have a vote button.
+          * Claims -> User claims have a vote button. Maybe good/bad/blocker.
 
   - Metric Layer
       + How are metrics created out of measurements and other metrics.
