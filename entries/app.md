@@ -8,6 +8,7 @@
 
 - id (required) - unique identifier
 - name (required) - app name
+- license - license
 - type (required) - app/os/hw/infra (XXX: should be fixed "app" in this doc?)
 - source - URL to source repo
 - tracker - URL to issue tracker
