@@ -1,0 +1,5 @@
+# Metadata
+
+- id (required)
+- submitter
+

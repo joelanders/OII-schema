@@ -67,3 +67,7 @@ OK.
   ]
 }
 ```
+
+So that we can make use of this output, I've adjusted the aforementioned python script (source here: https://github.com/joelanders/drafter) so that we can pull out JSON *or* the JSON Schema.
+The hercule -> drafter -> python-script pipeline is still a bit cumbersome to install, so our .gitlab-ci.yml file runs two scripts in the conext of a Docker container
+(https://hub.docker.com/r/joeoi/mson-to-json-schema/): `mson-to-json-schema.sh` builds the JSON Schema and `commit-json-schema.sh` commits the results back onto the current branch.
