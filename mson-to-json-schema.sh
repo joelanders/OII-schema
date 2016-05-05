@@ -17,3 +17,5 @@ for schema_file in `find entries -type f -name "*.md"`; do
     echo $schema_file
     mson-to-json-schema $schema_file > ${schema_file%.*}.json
 done
+
+find entries
