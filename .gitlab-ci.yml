@@ -17,6 +17,8 @@ commit-json-schema:
         - docker
     stage: commit-json-schema
     script: bash -l "commit-json-schema.sh"
+    dependencies:
+        - build-json-schema
 
 variables:
     GH_USERNAME: jmatsushita
