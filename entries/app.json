@@ -10,6 +10,10 @@
       "type": "string",
       "description": "app name"
     },
+    "license": {
+      "type": "string",
+      "description": "license"
+    },
     "type": {
       "type": "string",
       "description": "app/os/hw/infra (XXX: should be fixed \"app\" in this doc?)"

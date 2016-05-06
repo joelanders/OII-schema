@@ -2,10 +2,6 @@
 
 set -eu
 
-HERCULE=/usr/local/bin/hercule
-DRAFTER=/usr/local/bin/drafter
-REFRACT_FILTER=/usr/local/bin/refract-filter
-
 path-to-obj-name() {
     file=$(basename $1) # strips the path part
     name=${file%.*} # strips the extension
@@ -33,9 +29,9 @@ print_footer() {
 # input (filename) -> hercule -> drafter -> refract-filter -> output (stdout)
 mson-to-json-schema() {
     ( print_header $(path-to-obj-name $1) && cat $1 && print_footer ) \
-        | $HERCULE \
-        | $DRAFTER --format json \
-        | $REFRACT_FILTER -j --content_type="application/schema+json";
+        | hercule \
+        | drafter --format json \
+        | refract-filter -j --content_type="application/schema+json";
 }
 
 for schema_file in `find entries -type f -name "*.md"`; do
