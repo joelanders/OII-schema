@@ -10,7 +10,7 @@ build-json-schema:
     stage: build-json-schema
     script: bash -l "mson-to-json-schema.sh"
     artifacts:
-        unchecked: true
+        untracked: true
         paths:
             - entries/
 
