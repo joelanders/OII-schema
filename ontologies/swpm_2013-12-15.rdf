@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:dc11="http://purl.org/dc/elements/1.1/"
+         xmlns:ns0="http://purl.org/vocab/vann/"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+  <owl:Ontology rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0">
+    <dc11:title>Software Work Product Model</dc11:title>
+    <dc11:description>&lt;p&gt;Tradicionalmente durante el modelado de los procesos software, los productos de trabajo son tratados como unidades atómicas, con nombre pero sin estructura, que se generan o modifican durante el transcurso de los proyectos. De hecho, en el lenguaje SPEM no se dispone de mecanismos para detallar la estructura de los productos de trabajo, permitiendo sólo distinguir si se trata de un artefacto (Artifact), un entregable (Deliverable) o un resultado (Outcome) del proyecto.&lt;/p&gt;
+
+&lt;p&gt;Los productos de trabajo típicos en los procesos software suelen ser principalmente documentos o código fuente y suelen gestionarse desde herramientas especializadas o genéricas. Por ejemplo, las herramientas de modelado software, como Rational Rose, o los sistemas de control de versiones, como Git, son ejemplos de herramientas especializadas que ofrecen soporte a la gestión de ciertos tipos de productos de trabajo. Sin embargo, otras herramientas genéricas como los sistemas de gestión de contenidos, los sistemas de gestión documental o los sistemas de edición colaborativa o wiki también pueden utilizarse para albergar evidencias de los procesos.&lt;/p&gt;
+
+&lt;p&gt;El diseño de modelos para ciertos tipos de productos de trabajo ha sido una aproximación utilizada en diversas metodologías web dirigidas por modelos. Sin embargo, es habitual la necesidad de adaptar y personalizar metodologías conocidas para su aplicación en organizaciones específicas y para situaciones concretas, lo que se conoce como process tailoring. Por ello, se propone un vocabulario que permita definir productos de trabajo flexibles en cuanto a la estructura y tipo de sus artefactos.&lt;/p&gt;</dc11:description>
+    <dc11:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-12-19</dc11:modified>
+    <ns0:preferredNamespaceUri>http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#</ns0:preferredNamespaceUri>
+    <ns0:preferredNamespacePrefix>swpm</ns0:preferredNamespacePrefix>
+    <foaf:page rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0.html"/>
+    <dc11:creator>
+      <foaf:Person rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#ruizrube">
+        <foaf:name>Iván Ruiz Rube</foaf:name>
+      </foaf:Person>
+    </dc11:creator>
+
+  </owl:Ontology>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The Section entity</rdfs:label>
+    <rdfs:comment>Clase que representa una sección dentro de un
+   determinado documento generado durante el proyecto.</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Project">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The Project entity</rdfs:label>
+    <rdfs:comment>Clase contenedora de todos los productos de trabajo de
+   un proyecto.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://usefulinc.com/ns/doap#Project"/>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#DeliverableProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The DeliverableProduct entity</rdfs:label>
+    <rdfs:comment>Clase abstracta que representa un producto de trabajo
+   desarrollado durante el transcurso de un proyecto software y con
+   valor para terceros.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#InternalProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The InternalProduct entity</rdfs:label>
+    <rdfs:comment>Clase abstracta que representa un producto interno al
+   desarrollo o mantenimiento de software. Puede ser de tipo documental
+   o de código.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Specification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The Specification entity</rdfs:label>
+    <rdfs:comment>Clase que representa una especificación textual de algún
+   aspecto del proyecto software.</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The WorkProduct entity</rdfs:label>
+    <rdfs:comment>Clase abstracta y similar al concepto de WorkProduct en
+   SPEM que representa un determinado producto generado o
+   mantenido durante el proceso software. Se distinguen entre productos
+   entregables o internos.</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#CodeWorkProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The CodeWorkProduct entity</rdfs:label>
+    <rdfs:comment>Clase que representa la base de código de un proyecto
+   software.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#InternalProduct"/>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Model">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The Model entity</rdfs:label>
+    <rdfs:comment>Clase que representa un modelo diseñado haciendo uso un
+   lenguaje de modelado.</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#SourcePackage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The SourcePackage entity</rdfs:label>
+    <rdfs:comment>Clase que representa un determinado paquete de código
+   fuente basado en algún lenguaje de programación.</rdfs:comment>
+  </rdfs:Class>
+
+  <rdfs:Class rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#DocumentaryWorkProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The DocumentaryWorkProduct entity</rdfs:label>
+    <rdfs:comment>Clase que representa un documento técnico de trabajo.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#InternalProduct"/>
+  </rdfs:Class>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#embeddedWorkproducts">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The embeddedWorkproducts reference</rdfs:label>
+    <rdfs:comment>Productos de trabajo incluidos dentro de un producto entregable</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#DeliverableProduct"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#specifications">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The specifications reference</rdfs:label>
+    <rdfs:comment>Especificaciones, no basadas en modelos, incluidas dentro de una sección de un producto de trabajo documental</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Specification"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#type">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The type attribute</rdfs:label>
+    <rdfs:comment>Tipo de un modelo, especificación, producto entregable o paquete de código fuente</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Model"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Specification"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#DeliverableProduct"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#SourcePackage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/subject"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#embeddedSections">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The embeddedSections reference</rdfs:label>
+    <rdfs:comment>Secciones incluidas dentro de una sección de un producto de trabajo documental</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#sections">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The sections reference</rdfs:label>
+    <rdfs:comment>Secciones dentro de un producto de trabajo documental</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#DocumentaryWorkProduct"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#models">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The models reference</rdfs:label>
+    <rdfs:comment>Modelos de Ingeniería del Software incluidos dentro de una sección de un producto de trabajo documental</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Model"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#name">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The name attribute</rdfs:label>
+    <rdfs:comment>Descripción de un proyecto, producto de trabajo, sección, modelo, especificación o paquete de código fuente</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Project"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Model"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Specification"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#SourcePackage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/title"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#packages">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The packages reference</rdfs:label>
+    <rdfs:comment>Paquetes existentes en un producto de trabajo de código fuente</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#CodeWorkProduct"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#SourcePackage"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#order">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The order attribute</rdfs:label>
+    <rdfs:comment>Orden de la sección dentro de un producto de trabajo de tipo documental</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#description">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The description attribute</rdfs:label>
+    <rdfs:comment>Descripción de un proyecto, producto de trabajo, sección, modelo, especificación o paquete de código fuente</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Project"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Section"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Model"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Specification"/>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#SourcePackage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/elements/1.1/description"/>
+  </rdf:Property>
+
+  <rdf:Property rdf:about="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#workproducts">
+    <rdfs:isDefinedBy rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0"/>
+    <rdfs:label>The workproducts reference</rdfs:label>
+    <rdfs:comment>Productos de trabajo asociados a un proyecto</rdfs:comment>
+    <rdfs:domain rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#Project"/>
+    <rdfs:range rdf:resource="http://spi-fm.uca.es/spdef/models/deployment/swpm/1.0#WorkProduct"/>
+  </rdf:Property>
+
+</rdf:RDF>

@@ -1,0 +1,236 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dc="http://purl.org/dc/terms/"
+         xmlns:ns0="http://purl.org/vocab/vann/"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+  <owl:Ontology rdf:about="http://ontologi.es/doap-bugs#">
+    <rdfs:label xml:lang="en">DOAP Bugs</rdfs:label>
+    <rdfs:comment xml:lang="en">EvoOnt BOM is way too overcomplicated. Let's subclass it...</rdfs:comment>
+    <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-01-08</dc:created>
+    <dc:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-01-08</dc:issued>
+    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2010-08-31</dc:modified>
+    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2011-02-15</dc:modified>
+    <dc:creator rdf:resource="http://tobyinkster.co.uk/#i"/>
+    <ns0:preferredNamespacePrefix>dbug</ns0:preferredNamespacePrefix>
+    <ns0:preferredNamespaceUri>http://ontologi.es/doap-bugs#</ns0:preferredNamespaceUri>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#Issue">
+    <rdfs:label xml:lang="en">Issue</rdfs:label>
+    <rdfs:comment xml:lang="en">Provide a quick summary as an rdfs:label and a more extensive summary (if necessary) as an rdfs:comment.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#Issue"/>
+    <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#Enhancement">
+    <rdfs:label xml:lang="en">Enhancement</rdfs:label>
+    <rdfs:subClasssOf rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:subClasssOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#Enhancement"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#Bug">
+    <rdfs:label xml:lang="en">Bug</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#Defect"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#SecurityIssue">
+    <rdfs:label xml:lang="en">Security Issue</rdfs:label>
+    <rdfs:comment xml:lang="en">An issue that in some way compromises the security of affected versions of its project.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:subClassOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#Defect"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#page">
+    <rdfs:label xml:lang="en">page</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/isPrimaryTopicOf"/>
+    <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso"/>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#reporter">
+    <rdfs:label xml:lang="en">reporter</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#assignee">
+    <rdfs:label xml:lang="en">assignee</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2005/01/wf/flow#assignee"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#blocks">
+    <rdfs:label xml:lang="en">blocks</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#blocks"/>
+
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#classification">
+    <rdfs:label xml:lang="en">classification</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#severity">
+    <rdfs:label xml:lang="en">severity</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://ontologi.es/doap-bugs#SeverityLevel"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#hasSeverity"/>
+    <rdfs:subPropertyOf rdf:resource="http://ontologi.es/doap-bugs#classification"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#status">
+    <rdfs:label xml:lang="en">status</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <rdfs:subPropertyOf rdf:resource="http://ontologi.es/doap-bugs#classification"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#affects">
+    <rdfs:label xml:lang="en">affects</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://usefulinc.com/ns/doap#Version"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#fixed-in">
+    <rdfs:label xml:lang="en">fixed in</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://usefulinc.com/ns/doap#Version"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#comment">
+    <rdfs:label xml:lang="en">comment</rdfs:label>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://rdfs.org/sioc/ns#Post"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#hasComment"/>
+
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="http://ontologi.es/doap-bugs#issue">
+    <rdfs:label xml:lang="en">issue</rdfs:label>
+    <rdfs:domain rdf:resource="http://usefulinc.com/ns/doap#Project"/>
+    <rdfs:range rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+  </owl:ObjectProperty>
+
+  <owl:DatatypeProperty rdf:about="http://ontologi.es/doap-bugs#id">
+    <rdfs:label xml:lang="en">identifier</rdfs:label>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/identifier"/>
+    <rdfs:domain rdf:resource="http://ontologi.es/doap-bugs#Issue"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#SeverityLevel">
+    <rdfs:label xml:lang="en">Severity Level</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.ifi.uzh.ch/ddis/evoont/2008/11/bom#Severity"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </owl:Class>
+
+  <skos:ConceptScheme rdf:about="http://ontologi.es/doap-bugs#SEVERITY_LEVELS">
+    <rdfs:label xml:lang="en">Built-in Severity Levels</rdfs:label>
+    <rdfs:comment xml:lang="en">Please use these unless you have an important requirement to use your own severity level scheme. If you do design your own scheme, use skos:closeMatch, skos:exactMatch and so on to link to the definitions here.</rdfs:comment>
+  </skos:ConceptScheme>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#critical">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#SeverityLevel"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#SEVERITY_LEVELS"/>
+    <rdfs:label xml:lang="en">critical</rdfs:label>
+    <skos:prefLabel xml:lang="en">critical</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#major">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#SeverityLevel"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#SEVERITY_LEVELS"/>
+    <rdfs:label xml:lang="en">major</rdfs:label>
+    <skos:prefLabel xml:lang="en">major</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#minor">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#SeverityLevel"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#SEVERITY_LEVELS"/>
+    <rdfs:label xml:lang="en">minor</rdfs:label>
+    <skos:prefLabel xml:lang="en">minor</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#trivial">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#SeverityLevel"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#SEVERITY_LEVELS"/>
+    <rdfs:label xml:lang="en">trivial</rdfs:label>
+    <skos:prefLabel xml:lang="en">trivial</skos:prefLabel>
+  </rdf:Description>
+
+  <owl:Class rdf:about="http://ontologi.es/doap-bugs#StatusType">
+    <rdfs:label xml:lang="en">Status Type</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </owl:Class>
+
+  <skos:ConceptScheme rdf:about="http://ontologi.es/doap-bugs#STATUS_TYPES">
+    <rdfs:label xml:lang="en">Built-in Status Types</rdfs:label>
+    <rdfs:comment xml:lang="en">Please use these unless you have an important requirement to use your own status scheme. If you do design your own scheme, use skos:closeMatch, skos:exactMatch and so on to link to the definitions here.</rdfs:comment>
+  </skos:ConceptScheme>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#new">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">new</rdfs:label>
+    <skos:prefLabel xml:lang="en">new</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#confirmed">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">confirmed</rdfs:label>
+    <skos:prefLabel xml:lang="en">confirmed</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#fixed">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">fixed</rdfs:label>
+    <skos:prefLabel xml:lang="en">fixed</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#wont-fix">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">won't fix</rdfs:label>
+    <skos:prefLabel xml:lang="en">won't fix</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#works-for-me">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">works for me</rdfs:label>
+    <skos:prefLabel xml:lang="en">works for me</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#invalid">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">invalid</rdfs:label>
+    <skos:prefLabel xml:lang="en">invalid</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#in-progress">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">in progress</rdfs:label>
+    <skos:prefLabel xml:lang="en">in progress</skos:prefLabel>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://ontologi.es/doap-bugs#third-party">
+    <rdf:type rdf:resource="http://ontologi.es/doap-bugs#StatusType"/>
+    <skos:inScheme rdf:resource="http://ontologi.es/doap-bugs#STATUS_TYPES"/>
+    <rdfs:label xml:lang="en">third-party</rdfs:label>
+    <skos:prefLabel xml:lang="en">third-party</skos:prefLabel>
+    <skos:definition xml:lang="en">The issue is related to a third-party component.</skos:definition>
+  </rdf:Description>
+
+</rdf:RDF>
