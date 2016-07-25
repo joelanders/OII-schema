@@ -1,0 +1,5 @@
+- `entity`: `signal-android-3.4.0`
+- `attribute`:
+  - `property`: Dependency
+  - `type`: nodeCreated
+- `value`: `openssl-1.0.0-c`
