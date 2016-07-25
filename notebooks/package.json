@@ -1,0 +1,32 @@
+{
+  "name": "schema",
+  "version": "1.0.0",
+  "description": "Open Integrity Schema and utilities",
+  "main": "index.js",
+  "dependencies": {
+    "asyncawait": "^1.0.6",
+    "babel": "^6.5.2",
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "hercule": "^3.0.5",
+    "jsonschema": "^1.1.0",
+    "lodash": "^4.13.1",
+    "lodash-api-description": "0.0.2",
+    "plotly-notebook-js": "^0.1.2",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-jsonschema-form": "^0.38.0",
+    "request-promise": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "plugins": [
+      "transform-async-to-generator"
+    ]
+  }
+}

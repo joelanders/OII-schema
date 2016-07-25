@@ -1,0 +1,104 @@
+FORMAT: 1A
+HOST: https://api.openintegrity.org/
+
+# Open Integrity API documentation.
+
+## Events
+
+## Entities
+
+
+
+# Group Projects
+
+## Projects Collection [/projects]
+
+### List All Projects [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Projects)
+
+### Create a New Project [POST]
+
+You may create a new project using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+    + Attributes (Project)
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Attributes (Project)
+
+## Modify Project [/projects/{project_id}]
+
+### Get Project [GET]
+
++ Parameters
+
+    + project_id (string) - ID of the Project in the form of a string
+
++ Request A search limited to one result
+    + Parameters
+        + project_id: signal
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Attributes (Project)
+
+# Group Events
+
+
+
+# Data Structures
+
+# Projects
+
+ - `projects` (array[Project])
+
+
+## Sample
+
+   - `signal` ()
+     - `id`: signal
+     - `name`: Signal
+
+# Project
+
+> Should inherit from Entity but inheritance seems broken https://github.com/apiaryio/drafter/issues/366
+
+A top level placeholder for a number of software projects that accomplish similar functions and are owned by the same person/organisation.
+
+## Properties
+
+ - `id` (idProject) - Project Identifier
+ - `name` (string) - Project Name
+ - `instances` (Instance) - Instance
+
+## Sample
+ - `id`: `signal`
+ - `name`: `Signal`
+ - `instances`: `signal-android`
+
+# idProject (string)
+
+# Instance
+
+> Should inherit from (Entity)
+
+Instance of the project for a particular OS, Audience
+
+## Properties
+
+ - `id` (string) - Instance Identifier

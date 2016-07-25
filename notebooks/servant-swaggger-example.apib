@@ -1,0 +1,522 @@
+FORMAT: 1A
+
+# GitHub Gists API
+
+### /gists/{id}/{sha}
+
+#### GET
+
++ Parameters
+
+    + id (required)
+    
+    + sha (required)
+
++ Response 200
+
+    + Body
+
+    + Schema
+
+            {
+              "required": [
+                "id",
+                "description",
+                "owner",
+                "files",
+                "truncated",
+                "comments",
+                "created_at",
+                "updated_at"
+              ],
+              "type": "object",
+              "properties": {
+                "truncated": {
+                  "type": "boolean"
+                },
+                "owner": {
+                  "required": [
+                    "login",
+                    "type",
+                    "site_admin"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "User",
+                        "Organization"
+                      ]
+                    },
+                    "login": {
+                      "type": "string"
+                    },
+                    "site_admin": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "updated_at": {
+                  "format": "yyyy-mm-ddThh:MM:ssZ",
+                  "type": "string"
+                },
+                "created_at": {
+                  "format": "yyyy-mm-ddThh:MM:ssZ",
+                  "type": "string"
+                },
+                "files": {
+                  "additionalProperties": {
+                    "required": [
+                      "size",
+                      "language",
+                      "raw_url"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "integer"
+                      },
+                      "raw_url": {
+                        "type": "string"
+                      },
+                      "language": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "type": "object"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "comments": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 404
+
+    `id` or `sha` not found
+
+    + Body
+
+#### GET /gists/starred
+
++ Parameters
+
+    + since
+
++ Response 200
+
+    + Body
+
+    + Schema
+
+            {
+              "items": {
+                "required": [
+                  "id",
+                  "description",
+                  "owner",
+                  "files",
+                  "truncated",
+                  "comments",
+                  "created_at",
+                  "updated_at"
+                ],
+                "type": "object",
+                "properties": {
+                  "truncated": {
+                    "type": "boolean"
+                  },
+                  "owner": {
+                    "required": [
+                      "login",
+                      "type",
+                      "site_admin"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "User",
+                          "Organization"
+                        ]
+                      },
+                      "login": {
+                        "type": "string"
+                      },
+                      "site_admin": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "updated_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "files": {
+                    "additionalProperties": {
+                      "required": [
+                        "size",
+                        "language",
+                        "raw_url"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "size": {
+                          "type": "integer"
+                        },
+                        "raw_url": {
+                          "type": "string"
+                        },
+                        "language": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "array"
+            }
+
++ Response 400
+
+    Invalid `since`
+
+    + Body
+
+#### GET /gists/public
+
++ Parameters
+
+    + since
+
++ Response 200
+
+    + Body
+
+    + Schema
+
+            {
+              "items": {
+                "required": [
+                  "id",
+                  "description",
+                  "owner",
+                  "files",
+                  "truncated",
+                  "comments",
+                  "created_at",
+                  "updated_at"
+                ],
+                "type": "object",
+                "properties": {
+                  "truncated": {
+                    "type": "boolean"
+                  },
+                  "owner": {
+                    "required": [
+                      "login",
+                      "type",
+                      "site_admin"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "User",
+                          "Organization"
+                        ]
+                      },
+                      "login": {
+                        "type": "string"
+                      },
+                      "site_admin": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "updated_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "files": {
+                    "additionalProperties": {
+                      "required": [
+                        "size",
+                        "language",
+                        "raw_url"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "size": {
+                          "type": "integer"
+                        },
+                        "raw_url": {
+                          "type": "string"
+                        },
+                        "language": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "array"
+            }
+
++ Response 400
+
+    Invalid `since`
+
+    + Body
+
+### /gists/{id}
+
+#### GET
+
++ Parameters
+
+    + id (required)
+
++ Response 200
+
+    + Body
+
+    + Schema
+
+            {
+              "required": [
+                "id",
+                "description",
+                "owner",
+                "files",
+                "truncated",
+                "comments",
+                "created_at",
+                "updated_at"
+              ],
+              "type": "object",
+              "properties": {
+                "truncated": {
+                  "type": "boolean"
+                },
+                "owner": {
+                  "required": [
+                    "login",
+                    "type",
+                    "site_admin"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "User",
+                        "Organization"
+                      ]
+                    },
+                    "login": {
+                      "type": "string"
+                    },
+                    "site_admin": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "updated_at": {
+                  "format": "yyyy-mm-ddThh:MM:ssZ",
+                  "type": "string"
+                },
+                "created_at": {
+                  "format": "yyyy-mm-ddThh:MM:ssZ",
+                  "type": "string"
+                },
+                "files": {
+                  "additionalProperties": {
+                    "required": [
+                      "size",
+                      "language",
+                      "raw_url"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "integer"
+                      },
+                      "raw_url": {
+                        "type": "string"
+                      },
+                      "language": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "type": "object"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "comments": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 404
+
+    `id` not found
+
+    + Body
+
+#### GET /users/{username}/gists
+
++ Parameters
+
+    + username (required)
+    
+    + since
+
++ Response 200
+
+    + Body
+
+    + Schema
+
+            {
+              "items": {
+                "required": [
+                  "id",
+                  "description",
+                  "owner",
+                  "files",
+                  "truncated",
+                  "comments",
+                  "created_at",
+                  "updated_at"
+                ],
+                "type": "object",
+                "properties": {
+                  "truncated": {
+                    "type": "boolean"
+                  },
+                  "owner": {
+                    "required": [
+                      "login",
+                      "type",
+                      "site_admin"
+                    ],
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "User",
+                          "Organization"
+                        ]
+                      },
+                      "login": {
+                        "type": "string"
+                      },
+                      "site_admin": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "updated_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "format": "yyyy-mm-ddThh:MM:ssZ",
+                    "type": "string"
+                  },
+                  "files": {
+                    "additionalProperties": {
+                      "required": [
+                        "size",
+                        "language",
+                        "raw_url"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "size": {
+                          "type": "integer"
+                        },
+                        "raw_url": {
+                          "type": "string"
+                        },
+                        "language": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "comments": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "array"
+            }
+
++ Response 400
+
+    Invalid `since`
+
+    + Body
+
++ Response 404
+
+    `username` not found
+
+    + Body
+
