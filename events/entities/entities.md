@@ -60,3 +60,13 @@ Instance of the project for a particular OS, Audience
 A collected web page.
 
 # idPage (string)
+
+# Document (Entity)
+
+A Document helps refer to the meaning of a particular legal or policy document.
+
+## Properties
+
+ - `id` (idDocument) - Document identifier
+
+# idDocument (string)
