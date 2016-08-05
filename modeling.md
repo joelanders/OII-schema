@@ -107,13 +107,22 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 > - relationshipType_ancestorOf
 > - relationshipType_descendantOf
 >
+
+>> #### Build Dependency
+>
+> - `relationshipType_staticLink` - Is to be used when SPDXRef-A statically links to SPDXRef-B.
+> - `relationshipType_dynamicLink` - Is to be used when SPDXRef-A dynamically links to SPDXRef-B.
+>
+
 >> #### Runtime Dependency
 >>
 >> Some kind of package depedency
 >>
-> - `relationshipType_packageOf` -
-> - relationshipType_staticLink
-> - relationshipType_dynamicLink
+> - `relationshipType_packageOf` - To be used when SPDXRef-A is used as a package as part of SPDXRef-B.
+>
+>> This seems to be the `children`/`parent` property we use.
+>
+>> Openssl is statically linked to Signal-Android.
 >
 >> These seem like more general dependency relations.
 >
@@ -121,12 +130,19 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 > - relationshipType_contains
 > - relationshipType_hasPrerequisite
 > - relationshipType_prerequisiteFor
+>
+>> We could use prerequisites for system dependencies.
+>
 > - relationshipType_optionalComponentOf
 > - relationshipType_other
 >
->> #### Dev Depedency
+>> #### Dev Dependency
 >>
 > - `relationshipType_buildToolOf`
+>
+>> Mudge's CyberITL recommends build tools that enable better security.
+>
+>> #### Other
 >
 > - relationshipType_amends
 > - relationshipType_copyOf
@@ -144,8 +160,14 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 >> #### Artifacts
 >
 > - relationshipType_distributionArtifact
+>
+>> For the GPL. Distribute sources.
+>
 > - relationshipType_generatedFrom
 > - relationshipType_generates
+>
+>> Reproducible builds or Code Provenance.
+>
 >>
 >> #### Files
 >>
@@ -237,6 +259,12 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 >  This VCS location compact notation (inspired and mostly adopted from https://pip.pypa.io/en/latest/reference/pip_install.html#vcs-support as of 20150220) supports referencing locations in version control systems such as Git, Mercurial, Subversion and Bazaar, and specifies the type of VCS tool using url prefixes: “git+”, “hg+”, “bzr+”, “svn+” and specific transport schemes such as SSH or HTTPS.
 >
 >  Specifying sub-paths, branch names, a commit hash, a revision or a tag name is recommended, and supported using the "@"delimiter for commits and the "#" delimiter for sub-paths. Using user names and password in the host_name is not supported and should be considered as an error. User access control to URLs or VCS repositories must be handled outside of an SPDX document. In VCS location compact notations, the trailing slashes in `<host_name>`, `<path_to_repository>` are not significant. Leading and trailing slashes in `<sub_path>` are not significant.
+
+#### Libraries.io
+
+ - type:
+   - runtime
+   - development
 
 ## Academic Papers
 
