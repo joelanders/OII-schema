@@ -16,8 +16,12 @@ Specialise the schema from the more general `Event` / `Attribute` / `Value`.
  - `value` (Value, required) - Value
  - `context` (Context, required) - Context
 
+<<<<<<< Updated upstream
 :[](base.md)
+=======
+:[](../_meta/base.md)
+>>>>>>> Stashed changes
 
-:[](semantics.md)
+:[](../_meta/semantics.md)
 
 :[](entities.md)
