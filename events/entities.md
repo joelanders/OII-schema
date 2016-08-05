@@ -9,7 +9,15 @@ A top level placeholder for a number of software projects that accomplish simila
  - `id` (idProject) - Project Identifier
  - `instances` (Instance) - Instance
 
-# idProject (string)
+# idProject (enum)
+
+ - signal
+ - telegram
+ - conversations
+ - chat-secure
+ - android-messenger
+ - whatsapp
+ - wechat
 
 # Instance
 
@@ -19,7 +27,9 @@ Instance of the project for a particular OS, Audience
 
 ## Properties
 
- - `id` (string) - Instance Identifier
+ - `id` (idInstance) - Instance Identifier
+
+# idInstance (string)
 
 # Package
 
