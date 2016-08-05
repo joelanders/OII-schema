@@ -7,7 +7,7 @@
 ## Properties
 
  - `entity` (idProject) - Project Identifier
- - `attribute` (hasTermsOfService) - has Terms of Service
+ - `attribute` (project/termsofservice) - has Terms of Service
  - `value` (idPage) - Page URL
 
 ## Sample
@@ -24,7 +24,7 @@
 - `type` (enum):
   - propertyCreated (string, fixed)
   - propertyUpdated (string, fixed)
-  - propertyRemoved (string, fixed) 
+  - propertyRemoved (string, fixed)
 
 
 :[](events.md)
