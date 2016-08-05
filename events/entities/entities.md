@@ -70,3 +70,13 @@ A Document helps refer to the meaning of a particular legal or policy document.
  - `id` (idDocument) - Document identifier
 
 # idDocument (string)
+
+# Specification (object)
+
+A specification that a project implements. Could be a standard, API or legally defined level of conformance.
+
+## Properties
+
+- `id` (idSpecification) - Specification identifier (like `axolotl`, or `OpenPGP`)
+
+# idSpecification (string)
