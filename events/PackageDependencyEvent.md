@@ -32,7 +32,7 @@
 ## Properties
 
 - `property`: Dependency (string, fixed) - Dependency
-- `type` (enum)
+- `type` (array)
   - nodeCreated (string)
   - nodeDeleted (string)
 

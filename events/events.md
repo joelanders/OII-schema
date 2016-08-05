@@ -9,14 +9,15 @@
 
 Specialise the schema from the more general `Event` / `Attribute` / `Value`.
 
+
 ## Event
  - `entity` (Entity, required) - Entity
  - `attribute` (Attribute, required) - Attribute
  - `value` (Value, required) - Value
  - `context` (Context, required) - Context
 
-:[](eavc.md)
+:[](base.md)
 
 :[](semantics.md)
 
-:[](../entities/entities.md)
+:[](entities.md)
