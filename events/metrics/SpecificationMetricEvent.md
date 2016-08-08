@@ -1,4 +1,4 @@
-# SpecificationClaimEvent
+# SpecificationMetricEvent
 > [DOAP]
 
 A specification that a project implements.
@@ -7,11 +7,11 @@ Could be a standard, API or legally defined level of conformance.
 ## Properties
 
   - `entity` (idSpecification,required) - Specification Idenfier
-  - `attribute`: specification/claim (string,fixed,required) - specification/claim
+  - `attribute`: specification/metric (string,fixed,required)
   - `value` (SpecificationClaim,required) - Specification
   - `context` (Context,required) - Metadata
 
-# SpecificationClaim (Claim)
+# SpecificationMetric (Metric)
 
   - standard (object)
   - protocol (object)
@@ -32,9 +32,3 @@ Could be a standard, API or legally defined level of conformance.
   - forward secret
   - end to end
   - authenticated
-
-# Claim (object)
-
-  - `claim` (string,required) - Claim being made.
-  - `assert` (boolean,required) - Assertion (true) or Rejection (false)
-  - `evidence` (Evidence)

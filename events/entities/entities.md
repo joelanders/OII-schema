@@ -29,6 +29,10 @@ Instance of the project for a particular OS, Audience
 
  - `id` (idInstance) - Instance Identifier
 
+## Sample
+
+ - `id`:`signal-android`
+
 # idInstance (string)
 
 # Package
@@ -40,6 +44,14 @@ Instance of the project for a particular OS, Audience
 ## Properties
 
 - `id` (idPackage) - Package Identifier
+
+## Sample
+
+ - `id`: `signal-android-3.9.0`
+
+## Sample
+
+ - `id`: `signal-ios-3.2.0`
 
 # idPackage (string)
 
@@ -80,3 +92,19 @@ A specification that a project implements. Could be a standard, API or legally d
 - `id` (idSpecification) - Specification identifier (like `axolotl`, or `OpenPGP`)
 
 # idSpecification (string)
+
+# IssueTracker (object)
+
+## Properties
+
+- `id` (idIssueTracker) - Issue Tracker URL
+
+# idDistributionChannel (string)
+
+# DistributionChannel (object)
+
+## Properties
+
+- `id` (idDistributionChannel) - Distribution identifier (like `apple-store`, or `google-playstore`)
+
+# idDistributionChannel (string)

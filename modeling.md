@@ -1,15 +1,26 @@
 # Data Modeling Research
 
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
+- [Introduction](#introduction)
 - [Analysis](#analysis)
 - [Ontologies](#ontologies)
 	- [DOAP](#doap)
 	- [DBUG](#dbug)
 	- [SPDX](#spdx)
-- [Academic Papers](#academic-papers)
+	- [MITRE](#mitre)
+- [Research](#research)
+	- [RASEN](#rasen)
+	- [SCM Ontology zAgile](#scm-ontology-zagile)
+	- [Software Configuration Management Using Ontologies - MINDSWAP Research Group](#software-configuration-management-using-ontologies-mindswap-research-group)
 
 <!-- /TOC -->
+
+## Introduction
+
+This document aims to provide a summary of existing modelisation efforts which are related to Open Integrity.
+
+It is meant to be used in order to help design the Open Integrity data model and provide more opportunities for interoperability of tools and integration of data sets.
 
 ## Analysis
 
@@ -23,7 +34,17 @@ From the point of view of Open Integrity's MVP goals:
 > A Package represents a collection of software files that are delivered as a single functional component. A package can contain sub-packages, but the information in this class is a reference to the entire contents of the package listed.
 
    - It also has `fileType`s : `archive`, `binary`, `source` and `other`.
-   -
+ - The RASEN project's RACOMAT tool brings in:
+	 -  Tags that provide a number of categories (`Component`, `Product`, `Configuration`, `Physical system`, `Logical system`, `Process`, `Network segment`, `Database`, `Database server`, `Operating system`, `Programming language`, `Framework`, `Third party API / library`, `Task`, `Building block`)
+	 - Configurations which in their case are Tags on Tags.
+ - We need to differentiate configurations as :
+	 - A particular set of tools used together. (e.g. Mailvelope with Chrome, tor with a obfs4 bridge,...)
+		 - This seems like a `setup` entity (similarly to social source commons or stackshare... i.e. "which setup do you use?").
+	 - A particular tool configured in a specific way or using a specific feature. (e.g. hardened apache, , telegram with secure group chat...).
+		 - These seem like specialisations of Packages i.e. `telegram-3.0-secure-group-chat`.
+
+ - The CWE Schema provides an number of additional concepts that are relevant to OII such as:
+	 -
 
 ## Ontologies
 
@@ -260,12 +281,91 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 >
 >  Specifying sub-paths, branch names, a commit hash, a revision or a tag name is recommended, and supported using the "@"delimiter for commits and the "#" delimiter for sub-paths. Using user names and password in the host_name is not supported and should be considered as an error. User access control to URLs or VCS repositories must be handled outside of an SPDX document. In VCS location compact notations, the trailing slashes in `<host_name>`, `<path_to_repository>` are not significant. Leading and trailing slashes in `<sub_path>` are not significant.
 
+### MITRE
+
+http://ontolog.cim3.net/forum/ontology-summit/2010-12/pdfj3zhw3QDLz.pdf
+
+#### Oval - Configuration Description
+
+#### CWE - Classes of Vulnerabilities
+
+CWE **Views** provide a number of categorisation structures which are more relevant depending on the viewers' needs.
+
+Some are hierarchical representations.
+
+The **Development View** focuses on organising weaknesses within a structure that can be useful to developers:
+
+![](ontologies/cwe_developer.png)
+
+
+
+#### CVE - Actual vulnerabilities
+
+
+
 #### Libraries.io
 
  - type:
    - runtime
    - development
 
-## Academic Papers
+## Research
 
 https://www.researchgate.net/publication/262398131_Open_data_framework_for_sustainable_assessment_in_software_forges
+
+### RASEN
+
+The RACOMAT tool includes the following Tags that are used to isolate software components for risk analysis:
+
+- Component
+- Product
+- Configuration
+- Physical system
+- Logical system
+- Process
+- Network segment
+- Database
+- Database server
+- Operating system
+- Programming language
+- Framework
+- Third party API / library
+- Task
+- Building block
+
+
+Each of these Tags are in fact Classes that can be instantiated (In RACOMAT Tags are keys and an arbitrary string identifier can be the tag's value).
+
+In addition Tags can have tags, and this is used to specifiy Configurations.
+
+### SCM Ontology zAgile
+
+http://www.zagile.com/products/Evolving_a_Software_Configuration_Management_Ontology.pdf
+
+This paper proposes an ontology for Software Configuration Management.
+
+![](ontologies/SCM.png)
+
+### Software Configuration Management Using Ontologies - MINDSWAP Research Group
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.6608&rep=rep1&type=pdf
+
+1. Package versions are treated as individuals (members) of classes. The
+individuals must be declared as pairwise distinct.
+2. Packages are treated as classes in the ontology. Each class is specified via a
+direct enumeration of its members. This is done using the owl:oneOf
+construct.
+3. Package version restrictions are represented by classes. For each above or
+below restriction, a new class must be created.
+4. A property P is added to the ontology for correct modeling of the constraints.
+5. ValidConfiguration is a class that specifies the constraints of the
+dependency graph and can be any arbitrarily complex Boolean expression, on
+the dependent packages. It is determined by the intersection of different
+existentially quantified statements on property P. Existential quantification is
+denoted by the owl:someValuesFrom construct.
+6. Test is an individual that specifies the configuration. This configuration
+might be valid or invalid. Test is stated to be owl:differentFrom all other
+individuals in the ontology. All versions of packages in the configuration Test
+are added to this individual, using object assertions of property P.
+
+> This paper seems to advocate for using OWL ontologies for describing particular configuration plans which seems at odds with OWL as describing the data model and then using RDF to describe particular instances.

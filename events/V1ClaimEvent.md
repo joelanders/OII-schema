@@ -2,5 +2,4 @@
 
  - Publicly Verifiable / Deterministic build process
 
-
 :[](ClaimEvent.md)

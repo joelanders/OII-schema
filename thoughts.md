@@ -13,6 +13,22 @@ A project's dependency (openssl for signal Android) can live in Open Integrity w
 > We could have the entity be `package/openssl` but it feels that we're coupling too much. Adding this as a quad feels more representative of what really happened (a user saw a package and added an owner to it) and we can choose to interpret that event as we like later.
    - an intermediary singleton `Implementation` aggregate could be created as a Projection.
 
+
+## Metrics Cataloguing
+
+Streams of claims and measurements are reduced and presented in a structured fashion within a Project page/aggregate.
+
+What is the language that described which claims are displayed under particular projects.
+  - Project type defines relevant claims.
+  - Claim lifecycle (proposal, experimental, testing, production)
+  -
+
+What's the relationship between an event schema and a metric?
+  - Is every data point on the Project page a metric. Probably yes.
+    - Load aggregate displays only shallow metadata
+    - Click on a field, fetches the schema for this data point.
+
+
 ## Higher Order Modeling
 
 It seems that what I'm trying to do is to compose the event models into the aggregate model in the way that algebraic data types are built from primitive types.
