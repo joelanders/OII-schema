@@ -30,3 +30,6 @@ A repository
   - forward secret
   - end to end
   - authenticated
+
+
+Fails closed (i.e. you can't communicate until you've exchanged keys) and by default (i.e. once you've exchanged keys you are end to end encrypted) is the definition of **by default**.

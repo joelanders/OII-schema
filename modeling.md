@@ -4,6 +4,7 @@
 
 - [Introduction](#introduction)
 - [Analysis](#analysis)
+- [Interoperability Analysis](#interoperability-analysis)
 - [Ontologies](#ontologies)
 	- [DOAP](#doap)
 	- [DBUG](#dbug)
@@ -44,7 +45,12 @@ From the point of view of Open Integrity's MVP goals:
 		 - These seem like specialisations of Packages i.e. `telegram-3.0-secure-group-chat`.
 
  - The CWE Schema provides an number of additional concepts that are relevant to OII such as:
-	 -
+
+
+## Interoperability Analysis
+
+ - OVAL: defining configurations in enough details that they would adhere to the OVAL standard would be costly. However it would be beneficial to allow interoperability with a class of tools that review configuration of endpoints which could be an input to Open Integrity, which would then provide available information. In order to enable this type of use in the future the following steps are proposed:
+	 - Enable `Configuration` entities to contain a list of `OVAL Objects` as and `OVAL States`.
 
 ## Ontologies
 
@@ -286,6 +292,18 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 http://ontolog.cim3.net/forum/ontology-summit/2010-12/pdfj3zhw3QDLz.pdf
 
 #### Oval - Configuration Description
+
+http://ovalproject.github.io/getting-started/tutorial/
+
+OVAL aims to create a model for configuration management of endpoints for compliance, inventory and vulnerability (patching) management purporses.
+
+An OVAL Object refers to a configurable property of a software project (which are described in OVAL Metadata).
+
+An OVAL State is a particular configuration available for a given object.
+
+An OVAL Test is an expected value for the configuration (State) of a particular property (Object).
+
+An OVAL Criterion defines a set of Tests.
 
 #### CWE - Classes of Vulnerabilities
 

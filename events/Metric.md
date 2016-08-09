@@ -10,10 +10,6 @@
    - Microtaskable (boolean)
 
 
-## Sample
-
-:[](samples/ClaimEvent.md)
-
 
 ## Sample
 
