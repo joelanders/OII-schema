@@ -11,10 +11,16 @@
      - Linked to Other Metrics
  - Metrics
    - Technology
-     -
+     - Crypto
+     - Activity
+     - 
    - Governance
+     - Terms of Service
+     - License
+     -
    - Design
      - User Experience
+     - Feature
 
 
 This defines dashboards. Users could design their dashboards like this. They could design their scorecards.

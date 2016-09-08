@@ -35,6 +35,7 @@ From the point of view of Open Integrity's MVP goals:
 > A Package represents a collection of software files that are delivered as a single functional component. A package can contain sub-packages, but the information in this class is a reference to the entire contents of the package listed.
 
    - It also has `fileType`s : `archive`, `binary`, `source` and `other`.
+   - relationships
  - The RASEN project's RACOMAT tool brings in:
 	 -  Tags that provide a number of categories (`Component`, `Product`, `Configuration`, `Physical system`, `Logical system`, `Process`, `Network segment`, `Database`, `Database server`, `Operating system`, `Programming language`, `Framework`, `Third party API / library`, `Task`, `Building block`)
 	 - Configurations which in their case are Tags on Tags.

@@ -4,7 +4,8 @@
 
 ## Properties
 
- - `entity` (idProject) - Project Identifier
- - `attribute`: project/instance (string,fixed,required)
+ - `entity` (idInstance) - Instance Identifier
+ - `attribute`(enum,required)
+   - instance/dynamic_
  - `value` (idInstance) - Instance Identifier
  - `context` (Context,required) - Metadata
