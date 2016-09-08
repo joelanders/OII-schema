@@ -7,10 +7,6 @@
 ## Properties
 
  - `entity` (idInstance) - Instance Identifier
- - `attribute`: instance/repository (string,fixed,required)
+ - `attribute`: instance/package (string,fixed,required)
  - `value` (idRepository) - Repository URL
  - `context` (Context,required) - Metadata
-
-## Sample
-
-:[](samples/PackageRepositoryEvent.md)

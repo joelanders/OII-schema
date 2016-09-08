@@ -47,6 +47,10 @@ From the point of view of Open Integrity's MVP goals:
 
  - The CWE Schema provides an number of additional concepts that are relevant to OII such as:
 
+ - If we want our upper level model to apply to the OS/Hardware/Infrastructure view, then we might want to :
+	 - Map Project to the distribution like `debian` `windows`, Instance to architecture like `x86` or `arm` and Packages (which might be better renamed Releases) to versions.
+	 - Add these categories (OS/Hardware/Infra) to Project/Instance/Package.
+	 - Infer up Package
 
 ## Interoperability Analysis
 
@@ -369,22 +373,27 @@ This paper proposes an ontology for Software Configuration Management.
 
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.6608&rep=rep1&type=pdf
 
-1. Package versions are treated as individuals (members) of classes. The
-individuals must be declared as pairwise distinct.
-2. Packages are treated as classes in the ontology. Each class is specified via a
-direct enumeration of its members. This is done using the owl:oneOf
-construct.
-3. Package version restrictions are represented by classes. For each above or
-below restriction, a new class must be created.
+1. Package versions are treated as individuals (members) of classes. The individuals must be declared as pairwise distinct.
+2. Packages are treated as classes in the ontology. Each class is specified via a direct enumeration of its members. This is done using the owl:oneOf construct.
+3. Package version restrictions are represented by classes. For each above or below restriction, a new class must be created.
 4. A property P is added to the ontology for correct modeling of the constraints.
-5. ValidConfiguration is a class that specifies the constraints of the
-dependency graph and can be any arbitrarily complex Boolean expression, on
-the dependent packages. It is determined by the intersection of different
-existentially quantified statements on property P. Existential quantification is
-denoted by the owl:someValuesFrom construct.
-6. Test is an individual that specifies the configuration. This configuration
-might be valid or invalid. Test is stated to be owl:differentFrom all other
-individuals in the ontology. All versions of packages in the configuration Test
-are added to this individual, using object assertions of property P.
+5. ValidConfiguration is a class that specifies the constraints of the dependency graph and can be any arbitrarily complex Boolean expression, on the dependent packages. It is determined by the intersection of different existentially quantified statements on property P. Existential quantification is denoted by the owl:someValuesFrom construct.
+6. Test is an individual that specifies the configuration. This configuration might be valid or invalid. Test is stated to be owl:differentFrom all other individuals in the ontology. All versions of packages in the configuration Test are added to this individual, using object assertions of property P.
 
 > This paper seems to advocate for using OWL ontologies for describing particular configuration plans which seems at odds with OWL as describing the data model and then using RDF to describe particular instances.
+
+## Examples
+
+The following examples are meant to exercise the model with pseudo-data.
+
+### OS/HW/Infra
+
+Modeling desired Tool/OS/HW/Infra dependencies:
+ - `PackageDependencyEvent`
+	 - `signal-android-3.9` dependency/os `android-6`
+	 - `android-6` dependency/hardware `android-phone`
+
+ - `PackageConfigurationEvent`
+   - `signal-android-3.9` package/configuration `signal-sms`
+   - `gsm-network` package/configuration `signal-sms`
+   - ``

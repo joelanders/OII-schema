@@ -3,18 +3,65 @@ HOST: https://api.openintegrity.org/
 
 # Open Integrity API documentation.
 
-Should the main categories be Command/Query ?
+Open Integrity uses an Event Sourcing approach combined with a data structure that is close to a quad approach (in fact to a 5-tuple approach as used in Datomic) for top level entities and closer to a document DB (with no relational integrity, with eventual consistency and multi-version concurrency control) approach for agent data and human submitted claims.
+
+The 3 key entities in the data model are:
+ - `Project`: Represents the name people use to refer to applications. For example `signal` or `skype`. This will also be used to refer to OS projects, such as `osx`, Hardware projects such as `android-phone` and Infrastructure projects such as `gsm-network`.
+ - `Instance`: A particular implementation for a given OS or audience. For example `signal-android` or `skype-tomskype`. This will also be used to refer to OS major releases such as `osx-10`, hardware models `nexus-5x`, and Infrastructure deployments such as `gsm-network-o2-france`.
+ - `Package`: A particular release of a software component such as `signal-android-3.9.0` or `openssl-1.0.0h`. This will also be used to refer to OS builds `osx-10.11.5`, hardware builds such as `nexus-5x-MTC19Z` and Infrastructure build such as `gsm-network-o2-france-201606`.
+
+![](diagram.png)
+
+In order to model the fact that software might have different capabilities or properties depending on their configuration or the set of features used we use the following approach:
+ - `Configuration`: A given `Package` can have any number of configurations. For example `telegram-endtoend` or `conversations-endtoend`.
+ - `Feature`: Configurations are defined by a set of features. Such as `conversations-omemo` or `conversations-otr`. Feature might implement a specification.
+ - `Specification`: A specific protocol, or standard that defines how a feature should be implemented. For example `omemo`, `otr`.
+
+In order to model legal or policy documents, the `Document` entity will be used and allow statements/claims/terms to be added. `Page` refers to the actual text of the `Document`. A more detailed model which allows linking paragraphs to terms might be later adopted.
 
 ## Events (Command)
 
-## Entities (Query)
+Events allow API clients to submit new data to Open Integrity. There are 2 main type of events:
 
+  - **Relation Events**: Relation Events express a relation between to entities using their `id`s. The entities themselves don't need to be created before hand. The `id` should be human readable and use lowercase and dashes. Coining unique IDs for entities is a difficult problem which we won't address in the MVP.
+  - **Metric Events**: Metric Events add data to an entity. They can be submitted by automated agents or humans. They can range from quantitative measurements to qualitative claims. Some can enforce a particular schema but all will have a "fallback" to allow a qualitative claim to be made about any entity.
+
+For instance, in order to add a new Package dependency to a top level Package associate to a project (for instance to `signal-android-3.9.0`), a client would POST to the `events/relations/packages/dependencies` endpoint.
+
+## Aggregates (Query)
+
+Aggregates can be queried to retrieve the current state of an Entity or related Entities after the Event Sourcing backend has reconciled (or folded) all the previous values in time (which is done efficiently through the immutable append-only properties of CouchDB) into a consistent and correct state. This might include dealing with inconsistencies, contradictions (which can arise during the peer-review process) and the propagation of states through inference rules.
 
 # Group Events
 
-## Generic Events [/events]
+## Relation Events [/events/relations]
 
-### Create a new Generic Event [POST]
+Relation events are events that express that entities (such as a `Project` and a `Document`) are related.
+
+The following list of Relation Events are currently defined:
+ - **ProjectOwnerEvent**: who owns or develops the project.
+   - `entity`: `idProject`
+   - `attribute`: `project/owner`
+   - `value`: `idOwner`
+ - **OwnerDocumentEvent**: associate a document representing a set of terms or commitments made by the project `Owner`
+   - `entity`: `idOwner`
+   - `attribute`: `project/report`
+   - `value`: `idDocument`
+ - **ProjectDocumentEvent**: a License document.
+   - `entity`: `idProject`
+   - `attribute`: `project/license`
+   - `value`: `idDocument`
+ - **ProjectInstanceEvent**: associate a particular OS dependent or Audience dependent instance to a Project.
+ - **InstancePackageEvent**: associate a particular version or release to an Instance.
+
+The 2 following events have several possible attributes:
+ - **PackagePackageEvent**: associate a `Package` to another `Package`. The following attributes are available:
+   - `package/static`: For packages that include others in their release artifact.
+   - `package/dynamic`: For packages that require specific shared packages to be present in the deployment environment.
+   - `package/requirement`: For packages that require other
+ - **InstanceDocumentEvent**
+
+### Add/Retract a Relation Event [POST]
 
 + Request (application/json)
 
@@ -24,17 +71,33 @@ Should the main categories be Command/Query ?
 
     + Headers
 
-            Location: /events/2
+            Location: /events/relations/
 
     + Attributes (Event)
 
-## Page Events [/events/page/]
+## Metrics Events [/events/metrics/]
 
-### Create a new Page Content Event [POST]
+### Add/Retract a Relation Event [POST]
 
 + Request (application/json)
 
     + Attributes (PageContentEvent)
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /events/
+
+    + Attributes (PageContentEvent)
+
+## Package Events [/events/page/]
+
+### Create a new Package Dependency Event [POST]
+
++ Request (application/json)
+
+    + Attributes (PackageDependencyEvent)
 
 + Response 201 (application/json)
 
@@ -207,3 +270,37 @@ A collected web page.
 ## Properties
 
  - `id` (string) - Resource Id
+
+# PackageDependencyEvent
+
+> Should inherit from (Event)
+>
+> [Graph]: `Package.hasDependency` (Package)
+>
+> Not sure if this should be specialised to `Package`s or if it would make sense to reuse for `Project`s as well (e.g. Zom > ChatSecure > Conversations the latter not having PackageDependencies and only Project)
+
+## Properties
+
+ - `entity` (idPackage) - Package Identifier
+ - `attribute` (hasDependency) - hasDependency
+ - `value` (idPackage) - Dependent Package Identifier
+
+## Sample
+
+ - `entity`: `signal-android`
+ - `attribute`
+   - `property`: Dependency
+   - `type`: nodeCreated
+ - `value`: `openssl`
+
+# hasDependency (object)
+
+> Should inherit from (Graph)
+> [spdx:relationshipType_packageOf]
+
+## Properties
+
+- `property`: Dependency (string, fixed) - Dependency
+- `type` (array)
+  - nodeCreated (string)
+  - nodeDeleted (string)

@@ -76,9 +76,9 @@ Our Measurements would be equivalent to DataCube Observations.
 
 ## Meta Modeling Activism!
 
-Data modeling is an exercise of power. When it's made by experts and proposed as constrained choices for users the power relationship abides and promotes asymetries. The model can be inflicted on others and limit their agency or their consciousness.
+Data modeling is an exercise of power. When it's made by experts and proposed as constrained choices for users the power relationship abides and promotes asymetries. The model can be inflicted on others and limit their agency or their awareness.
 
-If Data modeling is part of an ongoing debate, allowing anyone to enrich
+If Data modeling is part of an ongoing debate, allowing anyone to enrich then it can represent a more inclusive and diverse set of world views and help translate between these world views.
 
 In order to make this process manageable various types of validators could be used from
  - simple syntactic ones,

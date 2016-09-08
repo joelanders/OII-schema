@@ -9,16 +9,23 @@
 ## Properties
 
  - `entity` (idPackage) - Package Identifier
- - `attribute` (hasDependency) - hasDependency
+ - `attribute` (enum,required)
+   - dependency/static - static dependency
+   - dependency/dynamic - dynamic dependency
+   - dependency/system - system dependency (i.e. MySQL,...)
+   - dependency/os - OS dependency (Should be between Application packages and OS packages)
+   - dependency/hardware - Hardware dependency (should be between OS packages and Hardware packages)
+   - dependency/infra - Infrastructure dependency (should be between Hardware packages and Infra packages)
  - `value` (idPackage) - Dependent Package Identifier
 
 ## Sample
 
  - `entity`: `signal-android`
  - `attribute`:
-   - `property`: Dependency
-   - `type`: nodeCreated
  - `value`: `openssl`
+ - `context`:
+   - `t`
+ - `added`: true
 
 ## Sample
 

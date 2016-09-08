@@ -1,9 +1,12 @@
 # InstanceIssueTrackerEvent
 
+> See DBUG
+
+
 ## Properties
 
  - `entity` (idInstance) - Instance Identifier
- - `attribute`: instance/distributionchannel (string,fixed,required)
+ - `attribute`: instance/issuetracker (string,fixed,required)
  - `value` (idIssueTracker) - Distribution Channel Id.
  - `context` (Context,required) - Metadata
 

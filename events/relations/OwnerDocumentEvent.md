@@ -5,6 +5,6 @@
 ## Properties
 
  - `entity`(idProject,required) - Project Idenfier
- - `attribute`: project/document (string,fixed,required) - project/document
+ - `attribute`: project/report (string,fixed,required) - project/document
  - `value` (idDocument,required) - Document
  - `context` (Context,required) - Metadata
