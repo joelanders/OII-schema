@@ -10,10 +10,14 @@
 	- [DBUG](#dbug)
 	- [SPDX](#spdx)
 	- [MITRE](#mitre)
+	- [Markos](#markos)
+	- [SEON](#seon)
 - [Research](#research)
 	- [RASEN](#rasen)
 	- [SCM Ontology zAgile](#scm-ontology-zagile)
 	- [Software Configuration Management Using Ontologies - MINDSWAP Research Group](#software-configuration-management-using-ontologies-mindswap-research-group)
+- [Examples](#examples)
+	- [OS/HW/Infra](#oshwinfra)
 
 <!-- /TOC -->
 
@@ -331,6 +335,19 @@ The **Development View** focuses on organising weaknesses within a structure tha
  - type:
    - runtime
    - development
+
+### Markos
+
+Software ontology
+
+![](ontologies/markos-software.svg)
+
+### SEON
+
+![](http://se-on.org/images/content/pyramid.png)
+
+http://se-on.org/
+
 
 ## Research
 
