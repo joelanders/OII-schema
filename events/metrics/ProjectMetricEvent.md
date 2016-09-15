@@ -7,7 +7,8 @@
  - `value` (PackageMetric,required) - Metric
  - `context` (Context,required) - Metadata
 
-# PackageMetric (Metric)
+# ProjectMetric (Metric)
 
+ - `name` - Project Name
  - `website_url` (string) - Download link (#6)
  - `category` (Category)
