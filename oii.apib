@@ -41,24 +41,26 @@ Relation events are events that express that entities (such as a `Project` and a
 The following list of Relation Events are currently defined:
  - **ProjectOwnerEvent**: who owns or develops the project.
    - `entity`: `idProject`
-   - `attribute`: `project/owner`
+   - `attribute`: `relation`
    - `value`: `idOwner`
+   - `context`
+     - `schema`: `https://...`
  - **OwnerDocumentEvent**: associate a document representing a set of terms or commitments made by the project `Owner`
    - `entity`: `idOwner`
-   - `attribute`: `project/report`
+   - `attribute`: `relation`
    - `value`: `idDocument`
  - **ProjectDocumentEvent**: a License document.
    - `entity`: `idProject`
-   - `attribute`: `project/license`
+   - `attribute`: `relation`
    - `value`: `idDocument`
  - **ProjectInstanceEvent**: associate a particular OS dependent or Audience dependent instance to a Project.
  - **InstancePackageEvent**: associate a particular version or release to an Instance.
 
 The 2 following events have several possible attributes:
- - **PackagePackageEvent**: associate a `Package` to another `Package`. The following attributes are available:
-   - `package/static`: For packages that include others in their release artifact.
-   - `package/dynamic`: For packages that require specific shared packages to be present in the deployment environment.
-   - `package/requirement`: For packages that require other
+ - **PackageDependency**: associate a `Package` to another `Package`. The following attributes are available:
+   - `dependency/static`: For packages that include others in their release artifact.
+   - `dependency/dynamic`: For packages that require specific shared packages to be present in the deployment environment.
+   - `dependency/requirement`: For packages that require other
  - **InstanceDocumentEvent**
 
 ### Add/Retract a Relation Event [POST]
@@ -76,6 +78,35 @@ The 2 following events have several possible attributes:
     + Attributes (Event)
 
 ## Metrics Events [/events/metrics/]
+
+
+## Add/Retract a Project Metric [POST]
+
++ Request (application/json)
+
+    + Attributes (metrics/Projects)
+
+
+projects/:idProject/metrics
+projects/:idProject/owners
+projects/:idProject/instances
+
+projects/signal/metrics
+projects/signal/owners POST {idOwner: "openwhispersystems"} -> { e: "signal"}
+
+projects/signal/owners/openwhispersystems/metrics POST {legal_name: "O W S, inc."} -> { e: openwhispersystems, a: owners/metrics, v: {} }
+
+## Add/Retract a Onwer Metric [POST]
+
++ Request (application/json)
+
+    + Attributes (metrics/Owners)
+
+owners/openwhispersystems/metrics POST {legal_name: "O W S, inc."}
+
+projects/signal/instances/signal-android/metrics POST {md5:"blah"}
+
+
 
 ### Add/Retract a Relation Event [POST]
 
