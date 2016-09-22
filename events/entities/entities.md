@@ -19,6 +19,15 @@ A top level placeholder for a number of software projects that accomplish simila
  - whatsapp
  - wechat
 
+# Owner
+
+## Properties
+
+- `id` (idOwner) - Owner Identifier
+
+# idOwner (string)
+
+
 # Instance
 
 > Should inherit from (Entity)
