@@ -1,15 +1,18 @@
 graph TB
+  Project --- Project
   Project --- Instance
   Project --- Owner
+  Project --- Commitments
   Instance --- Package
-  Project -- TermsOfService --- Document
-  Document --- Page
+  Project -- TermsOfService / Documentation --- Document
   Package --- Package
-  Feature --- Specification
-  Package -- OneOf --- Configuration
-  Configuration -- Is a set of many --- Feature
+  Document --- Pages
+  Document --- Commitments
   Owner -- TransparencyReport --- Document
   Owner -- PrivacyPolicy --- Document
+  Owner --- Commitments
+  Instance -- OneOf --- Configuration
+  Instance -- Is a set of many --- Feature
   Instance --- IssueTracker
   Instance --- Repository
   Instance --- DistributionChannel
