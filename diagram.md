@@ -12,10 +12,11 @@ graph TB
   Owner -- PrivacyPolicy --- Document
   Owner --- Commitments
   Instance -- OneOf --- Configuration
-  Instance -- Is a set of many --- Feature
+  Configuration -- Is a set of many --- Specifications
+  Specifications --- Features
   Instance --- IssueTracker
   Instance --- Repository
   Instance --- DistributionChannel
   Instance -- License --- Document
-  Package --- Issue
+  Instance --- Issue
   IssueTracker --- Issue
