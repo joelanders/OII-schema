@@ -15,13 +15,7 @@ The 3 key entities in the data model are:
  ![](diagram-core.png)
 
 In order to model the fact that software might have different capabilities or properties depending on their configuration or the set of features used we use the following approach:
-- `Configuration`: A given `Package` can have any number of configurations. For example `telegram-endtoend` or `conversations-endtoend`.
- - `Feature`: Configurations are defined by a set of features. Such as `conversations-omemo` or `conversations-otr`. Feature might implement a specification.
+ - `Configuration`: A given `Package` can have any number of configurations. For example `telegram-endtoend` or `conversations-endtoend`.
+ - `Specifications`: Configurations are defined by a set of specifications they implement. Such as `conversations-omemo` or `conversations-otr`. 
 
 In order to model legal or policy documents, the `Document` entity will be used and allow statements/claims/terms to be added. `Page` refers to the actual text of the `Document`. A more detailed model which allows linking paragraphs to terms might be later adopted.
-
-## Taxonomies
-
-A number of properties of each entities are described via enumerated lists or trees (SKOS like). For instance:
-
-- `Specification`: A specific protocol, or standard that defines how a feature should be implemented. For example `omemo`, `otr`.
