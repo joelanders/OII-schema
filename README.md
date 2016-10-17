@@ -12,7 +12,7 @@ The 3 key entities in the data model are:
  - `Instance`: A particular implementation for a given OS or audience. For example `signal-android` or `tom-skype`.
  - `Package`: A particular release of a software component such as `signal-android-3.9.0` or `openssl-1.0.0h`.
 
- ![](diagram.png)
+ ![](diagram-core.png)
 
 In order to model the fact that software might have different capabilities or properties depending on their configuration or the set of features used we use the following approach:
 - `Configuration`: A given `Package` can have any number of configurations. For example `telegram-endtoend` or `conversations-endtoend`.
@@ -25,12 +25,3 @@ In order to model legal or policy documents, the `Document` entity will be used 
 A number of properties of each entities are described via enumerated lists or trees (SKOS like). For instance:
 
 - `Specification`: A specific protocol, or standard that defines how a feature should be implemented. For example `omemo`, `otr`.
-
-
-## Api
-
-> This should be moved into its own repo but for now the data modeling is intertwined with the api definition.
-
-The `oii.apib` file generates : http://docs.oii.apiary.io/#
-
-![](api_docs.png)
