@@ -1,21 +1,31 @@
 # Data Modeling Research
 
-<!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
+<!-- TOC depthFrom:2 depthTo:4 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
 - [Analysis](#analysis)
 - [Interoperability Analysis](#interoperability-analysis)
 - [Ontologies](#ontologies)
-	- [DOAP](#doap)
-	- [DBUG](#dbug)
-	- [SPDX](#spdx)
-	- [MITRE](#mitre)
-	- [Markos](#markos)
-	- [SEON](#seon)
-- [Research](#research)
-	- [RASEN](#rasen)
-	- [SCM Ontology zAgile](#scm-ontology-zagile)
-	- [Software Configuration Management Using Ontologies - MINDSWAP Research Group](#software-configuration-management-using-ontologies-mindswap-research-group)
+	- [General Software Ontologies](#general-software-ontologies)
+		- [DOAP](#doap)
+		- [DBUG](#dbug)
+		- [SPDX](#spdx)
+		- [MITRE](#mitre)
+		- [Libraries.io](#librariesio)
+		- [Markos](#markos)
+		- [SEON](#seon)
+		- [RASEN](#rasen)
+		- [SCM Ontology zAgile](#scm-ontology-zagile)
+		- [Software Configuration Management Using Ontologies - MINDSWAP Research Group](#software-configuration-management-using-ontologies-mindswap-research-group)
+	- [Software Security & Privacy Ontologies](#software-security-privacy-ontologies)
+		- [NRL Security Ontology](#nrl-security-ontology)
+		- [Secure Tropos Project](#secure-tropos-project)
+		- [Formalising Information Security](#formalising-information-security)
+		- [MITRE's Cyber Ontology](#mitres-cyber-ontology)
+		- [[Catalogue] Ontologies for Security Requirements: A Literature Survey and Classification](#catalogue-ontologies-for-security-requirements-a-literature-survey-and-classification)
+		- [[Catalogue] Security ontologies & STAC (Security Toolbox: Attacks and Coutermeasures)](#catalogue-security-ontologies-stac-security-toolbox-attacks-and-coutermeasures)
+		- [[Catalogue] Ontologies for Privacy Requirements Engineering: A Systematic Literature Review](#catalogue-ontologies-for-privacy-requirements-engineering-a-systematic-literature-review)
+- [Other Research](#other-research)
 - [Examples](#examples)
 	- [OS/HW/Infra](#oshwinfra)
 
@@ -63,7 +73,9 @@ From the point of view of Open Integrity's MVP goals:
 
 ## Ontologies
 
-### DOAP
+### General Software Ontologies
+
+#### DOAP
  - Description of a Project
  - http://lov.okfn.org/dataset/lov/vocabs/doap
 
@@ -108,11 +120,11 @@ From the point of view of Open Integrity's MVP goals:
 >> How nice :) Should probably be a `Resource`
 >
 
-### DBUG
+#### DBUG
 
 http://lov.okfn.org/dataset/lov/vocabs/dbug
 
-### SPDX
+#### SPDX
 
 SPDX® is a designed to allow the exchange of data about software packages. This information includes general information about the package, licensing information about the package as a whole, a manifest of files contained in the package and licensing information related to the contained files.
 
@@ -296,11 +308,11 @@ SPDX® is a designed to allow the exchange of data about software packages. This
 >
 >  Specifying sub-paths, branch names, a commit hash, a revision or a tag name is recommended, and supported using the "@"delimiter for commits and the "#" delimiter for sub-paths. Using user names and password in the host_name is not supported and should be considered as an error. User access control to URLs or VCS repositories must be handled outside of an SPDX document. In VCS location compact notations, the trailing slashes in `<host_name>`, `<path_to_repository>` are not significant. Leading and trailing slashes in `<sub_path>` are not significant.
 
-### MITRE
+#### MITRE
 
 http://ontolog.cim3.net/forum/ontology-summit/2010-12/pdfj3zhw3QDLz.pdf
 
-#### Oval - Configuration Description
+##### Oval - Configuration Description
 
 http://ovalproject.github.io/getting-started/tutorial/
 
@@ -314,7 +326,7 @@ An OVAL Test is an expected value for the configuration (State) of a particular 
 
 An OVAL Criterion defines a set of Tests.
 
-#### CWE - Classes of Vulnerabilities
+##### CWE - Classes of Vulnerabilities
 
 CWE **Views** provide a number of categorisation structures which are more relevant depending on the viewers' needs.
 
@@ -326,7 +338,7 @@ The **Development View** focuses on organising weaknesses within a structure tha
 
 
 
-#### CVE - Actual vulnerabilities
+##### CVE - Actual vulnerabilities
 
 
 
@@ -336,24 +348,20 @@ The **Development View** focuses on organising weaknesses within a structure tha
    - runtime
    - development
 
-### Markos
+#### Markos
 
 Software ontology
 
-![](ontologies/markos-software.svg)
+[![](ontologies/markos-software.svg)](http://vowl.visualdataweb.org/webvowl/index.html#iri=http://markosproject.sourceforge.net/ontologies/software)
 
-### SEON
+#### SEON
 
 ![](http://se-on.org/images/content/pyramid.png)
 
 http://se-on.org/
 
 
-## Research
-
-https://www.researchgate.net/publication/262398131_Open_data_framework_for_sustainable_assessment_in_software_forges
-
-### RASEN
+#### RASEN
 
 The RACOMAT tool includes the following Tags that are used to isolate software components for risk analysis:
 
@@ -378,7 +386,7 @@ Each of these Tags are in fact Classes that can be instantiated (In RACOMAT Tags
 
 In addition Tags can have tags, and this is used to specifiy Configurations.
 
-### SCM Ontology zAgile
+#### SCM Ontology zAgile
 
 http://www.zagile.com/products/Evolving_a_Software_Configuration_Management_Ontology.pdf
 
@@ -386,7 +394,7 @@ This paper proposes an ontology for Software Configuration Management.
 
 ![](ontologies/SCM.png)
 
-### Software Configuration Management Using Ontologies - MINDSWAP Research Group
+#### Software Configuration Management Using Ontologies - MINDSWAP Research Group
 
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.6608&rep=rep1&type=pdf
 
@@ -398,6 +406,51 @@ http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.6608&rep=rep1&type=p
 6. Test is an individual that specifies the configuration. This configuration might be valid or invalid. Test is stated to be owl:differentFrom all other individuals in the ontology. All versions of packages in the configuration Test are added to this individual, using object assertions of property P.
 
 > This paper seems to advocate for using OWL ontologies for describing particular configuration plans which seems at odds with OWL as describing the data model and then using RDF to describe particular instances.
+
+### Software Security & Privacy Ontologies
+
+#### NRL Security Ontology
+
+https://www.nrl.navy.mil/itd/chacs/sites/www.nrl.navy.mil.itd.chacs/files/pdfs/Kim%20etal2005.pdf
+
+http://vowl.visualdataweb.org/webvowl/index.html#iri=https://raw.githubusercontent.com/DOACC/ADA437938/master/security-main.owl
+
+https://github.com/DOACC/ADA437938
+
+#### Secure Tropos Project
+
+http://www.troposproject.org/node/301
+
+#### Formalising Information Security
+
+Get's good marks on the Ontologies for Security Requirements Literature Survey
+
+![](ontologies/formalizing_infosec.png)
+
+http://sec.sba-research.org/webprotege/
+
+
+#### MITRE's Cyber Ontology
+
+http://ceur-ws.org/Vol-966/STIDS2012_T06_ObrstEtAl_CyberOntology.pdf
+
+#### [Catalogue] Ontologies for Security Requirements: A Literature Survey and Classification
+
+https://hal.archives-ouvertes.fr/hal-00709970/document
+
+#### [Catalogue] Security ontologies & STAC (Security Toolbox: Attacks and Coutermeasures)
+
+http://semantic-web-of-things.appspot.com/?p=ontologies#security_onto
+
+#### [Catalogue] Ontologies for Privacy Requirements Engineering: A Systematic Literature Review
+
+https://arxiv.org/pdf/1611.10097.pdf
+
+## Other Research
+
+https://www.researchgate.net/publication/262398131_Open_data_framework_for_sustainable_assessment_in_software_forges
+
+
 
 ## Examples
 
