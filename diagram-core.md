@@ -1,17 +1,23 @@
 graph TB
-  Project --- Project
   Project --- Instance
   Project --- Owner
+  Instance --- Package
   Instance -- OneOf --- Configuration
+  Instance --- License
   Configuration -- Is a set of many --- Specifications
   Specifications --- Features
-  Instance --- Package
-  Instance -- License --- Document
-  Package --- Package
+  Package -- Static Dependency --- Package
   Package --- Issue
-  Document --- Issue
-  Project -- TermsOfService / Documentation --- Document
-  Package -- Audit --- Document
+  Audit --- Issue
+  Project --- TermsOfService
+  Package --- Audit
   Document --- Pages
-  Owner -- TransparencyReport --- Document
-  Owner -- PrivacyPolicy --- Document
+  Owner --- TransparencyReport
+  Owner --- PrivacyPolicy
+  Audit -.- Document
+  License -.- Document
+  Specifications -.- Document
+  TransparencyReport -.- Document
+  PrivacyPolicy -.- Document
+  TermsOfService -.- Document
+  style Document fill:#99f
