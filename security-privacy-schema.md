@@ -1,13 +1,22 @@
-
 # Security and Privacy Schema
 
-This extension of our data layer schema aims to help model statements in a language which is close to everyday non-technical language for instance:
+This proposed extension to our data layer schema (see the [README.md](README.md)) aims to help model statements about software tool seecurity and privacy properties in a simple accessible language with only a limited amount of domain knowledge required, for instance:
 
- - **Signal** `project` on **Android** `instance` with the **default chat** `configuration` seeks to provide **forward secrecy** `feature` via the **signal protocol** `mechanism` implemented in **libsignal-2.4.0** `package`.
+> The **Signal** `project` on it's **Signal Android** `instance` with the **default chat** `configuration` seeks to provide **forward secrecy** `feature` via the **signal protocol** `mechanism` implemented in **libsignal-2.4.0** `package`.
 
-It focuses on facts or claims that are as objective as possible to enable more sophisticated, context-dependent metrics to be developed from these facts.
+It focuses on facts or claims that are as objective as possible to enable more sophisticated, context-dependent metrics to be developed from these facts. These facts and the schema underlying them will also be debatable, but hopefully the most valuable debates can occur with the definition of Metrics that are useful for supporting decisions.
 
-## Definitions
+## Background
+
+ We [reviewed the literature](https://meta.openintegrity.org/store/schema/blob/master/modeling.md#software-security-privacy-ontologies) on security and privacy ontologies for requirements, modeling and other purposes. Are currently at the system boundary or out of scope: description of threats, attacks methods, impact, organisational aspects of risk management, endpoint security.
+
+ From there we've identified key papers which provide relevant concepts. Specifically:
+  - [ONTOPRIV] : Gharib, Mohamad, Paolo Giorgini, and John Mylopoulos. "Ontologies for Privacy Requirements Engineering: A Systematic Literature Review." arXiv preprint arXiv:1611.10097 (2016).
+  - [SOKSECUREMESSAGING] : Unger, Nik, et al. "SoK: Secure Messaging." 2015 IEEE Symposium on Security and Privacy. IEEE, 2015.
+  - [ONTOMOBILE] : Beji, Sofien, and Nabil El Kadhi. "Security ontology proposal for mobile applications." 2009 Tenth International Conference on Mobile Data Management: Systems, Services and Middleware. IEEE, 2009.
+
+
+## Proposed Definitions
 
  - **Feature**: High-level feature, which might express a security objective or privacy goal.
    - Security Features, Usability Properties and Adoption Properties in [SOKSECUREMESSAGING]
@@ -18,7 +27,7 @@ It focuses on facts or claims that are as objective as possible to enable more s
    - Concrete instances of Privacy Constraint, Privacy Mechanism or Privacy Policy in [ONTOPRIV]
    - Concrete instances of Mechanisms in [ONTOMOBILE]
 
- - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness)
+ - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness in CVE/CWE terminology). A Feature exists to address an actual `Issue` or a potential `Issue` (during the design phase, as part of a Threat Model).
 
 ![](security-privacy-schema/06775ab60322edddc5f1bd0bd8fa4325.png)
 
@@ -108,15 +117,6 @@ digraph openintegrityschema {
 
 }
 ```
-
-## Background
-
- We [reviewed the literature](https://meta.openintegrity.org/store/schema/blob/master/modeling.md#software-security-privacy-ontologies) on security and privacy ontologies for requirements, modeling and other purposes. Are currently at the system boundary or out of scope: description of threats, attacks methods, impact, organisational aspects of risk management, endpoint security.
-
- From there we've identified key papers which provide relevant concepts. Specifically:
-  - [ONTOPRIV] : Gharib, Mohamad, Paolo Giorgini, and John Mylopoulos. "Ontologies for Privacy Requirements Engineering: A Systematic Literature Review." arXiv preprint arXiv:1611.10097 (2016).
-  - [SOKSECUREMESSAGING] : Unger, Nik, et al. "SoK: Secure Messaging." 2015 IEEE Symposium on Security and Privacy. IEEE, 2015.
-  - [ONTOMOBILE] : Beji, Sofien, and Nabil El Kadhi. "Security ontology proposal for mobile applications." 2009 Tenth International Conference on Mobile Data Management: Systems, Services and Middleware. IEEE, 2009.
 
 
 
