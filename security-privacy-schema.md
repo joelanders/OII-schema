@@ -1,30 +1,26 @@
----
-
- - Test:
-   - Test
-   - Yo
-
----
 
 # Security and Privacy Schema
 
+This extension of our data layer schema aims to help model statements in a language which is close to everyday non-technical language for instance:
+
+ - **Signal** `project` on **Android** `instance` with the **default chat** `configuration` seeks to provide **forward secrecy** `feature` via the **signal protocol** `mechanism` implemented in **libsignal-2.4.0** `package`.
+
+It focuses on facts or claims that are as objective as possible to enable more sophisticated, context-dependent metrics to be developed from these facts.
+
 ## Definitions
 
- - **Feature**: High-level feature, which might express a security objective or privacy goal. It might also express what is generally meant in everyday language for instance *"it has a group-chat feature"*.
+ - **Feature**: High-level feature, which might express a security objective or privacy goal.
    - Security Features, Usability Properties and Adoption Properties in [SOKSECUREMESSAGING]
    - Security Property in STAC
    - Privacy Goal & Privacy Requirements in [ONTOPRIV]
  - **Mechanism**: A technical or policy solution providing a feature. This corresponds to:
-   - Scheme as defined in [SOKSECUREMESSAGING]
-   - Privacy Constraint, Privacy Mechanism or Privacy Policy in [ONTOPRIV]
-   - Mechanism in [ONTOMOBILE]
+   - A concrete instance of a Scheme as defined in [SOKSECUREMESSAGING]
+   - Concrete instances of Privacy Constraint, Privacy Mechanism or Privacy Policy in [ONTOPRIV]
+   - Concrete instances of Mechanisms in [ONTOMOBILE]
 
-   ![](modeling/c08d59fb720645706380fd879254d0e5.png)
+ - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness)
 
- - **ResourceType**
-
-   ![](modeling/5fe284f5a3d769c343dc5a4dc18d578b.png)
-
+![](security-privacy-schema/06775ab60322edddc5f1bd0bd8fa4325.png)
 
 
 ```{viz}
@@ -121,19 +117,6 @@ digraph openintegrityschema {
   - [ONTOPRIV] : Gharib, Mohamad, Paolo Giorgini, and John Mylopoulos. "Ontologies for Privacy Requirements Engineering: A Systematic Literature Review." arXiv preprint arXiv:1611.10097 (2016).
   - [SOKSECUREMESSAGING] : Unger, Nik, et al. "SoK: Secure Messaging." 2015 IEEE Symposium on Security and Privacy. IEEE, 2015.
   - [ONTOMOBILE] : Beji, Sofien, and Nabil El Kadhi. "Security ontology proposal for mobile applications." 2009 Tenth International Conference on Mobile Data Management: Systems, Services and Middleware. IEEE, 2009.
-
-## Example
-
-We'll evaluate the fitness of these modeling choices by aiming to fit the [SOKSECUREMESSAGING] paper's concept into this schema.
-
-We depart from the papers above in the following ways:
- - [ONTOMOBILE] :
-   - We consider the Mobile Profile as Features.
-
-
- - Signal `project` on Android `instance` with the default chat `configuration` seeks (forward secrecy `feature` via signal protocol `mechanism` implemented in libsignal `package`).
-
-
 
 
 
