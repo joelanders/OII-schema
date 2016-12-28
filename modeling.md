@@ -446,6 +446,8 @@ http://semantic-web-of-things.appspot.com/?p=ontologies#security_onto
 
 https://arxiv.org/pdf/1611.10097.pdf
 
+![](ontologies/ontology-privacy-req.png)
+
 ## Other Research
 
 https://www.researchgate.net/publication/262398131_Open_data_framework_for_sustainable_assessment_in_software_forges
