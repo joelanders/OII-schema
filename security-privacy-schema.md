@@ -29,8 +29,71 @@ It focuses on facts or claims that are as objective as possible to enable more s
 
  - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness in CVE/CWE terminology). A Feature exists to address an actual `Issue` or a potential `Issue` (during the design phase, as part of a Threat Model).
 
-![](security-privacy-schema/06775ab60322edddc5f1bd0bd8fa4325.png)
+![](extension.png)
 
+```{viz}
+digraph openintegrityschema {
+ # rankdir=LR;
+ ratio="0.5";
+ size="12,12"
+ clusterMode="global";
+ edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+	node [shape = "circle"];
+ node [shape = "box" width="1.5"];
+ SchemaNext, Mechanism [shape = "rect" width="1.5" style = "dashed" fontcolor="black"];
+ Schema, Feature, Project, Instance, Configuration, Package, Issue, AuditDocument [shape = "box" width="1.5" style="bold"];
+
+ subgraph cluster_0 {
+   color=invis;
+#    Intention
+ }
+
+ subgraph cluster_12 {
+   color=invis;
+   Project
+   Instance
+   Package
+ }
+
+ subgraph cluster_02 {
+   color=invis;
+   AuditDocument
+   Issue
+ }
+
+
+ subgraph cluster_2 {
+   color=invis;
+   Feature
+   Mechanism
+ }
+
+ graph [labelloc="b" fontsize="12.0" fontname="helvetica-bold"];
+
+ subgraph cluster_4 {
+   label="Legend";
+   edge [color="invis"];
+   Schema -> SchemaNext;
+ }
+
+ edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+
+ Feature -> Mechanism [ xlabel = "uses" ];
+ Issue -> Package [ xlabel = "occurs in" ];
+ AuditDocument -> Issue [ xlabel = "Reports"  ];
+
+ Project -> Instance [ xlabel = "develops" ]
+ Instance -> Package [ xlabel = "is made of" ];
+ Instance -> Configuration [ xlabel = "is used with" ];
+ Package -> Mechanism [ xlabel = "implements" ];
+ Configuration -> Feature [ xlabel = "provides" ];
+
+}
+```
+
+### Including Categories
+
+![](extension-details.png)
 
 ```{viz}
 digraph openintegrityschema {
@@ -56,12 +119,6 @@ digraph openintegrityschema {
     AssetType
   }
 
-  subgraph cluster_02 {
-    color=invis;
-    Issue
-    AuditDocument
-  }
-
   subgraph cluster_12 {
     color=invis;
     Project
@@ -69,9 +126,15 @@ digraph openintegrityschema {
     Package
   }
 
+  subgraph cluster_02 {
+    color=invis;
+    AuditDocument
+    Issue
+  }
+
+
   subgraph cluster_2 {
     color=invis;
-    Configuration
     Feature
     Mechanism
     Specification
@@ -91,21 +154,19 @@ digraph openintegrityschema {
 
   AssetType -> Project [ xlabel = "has a" dir = "back" ];
 
-  ThreatType -> VulnerabilityType [ xlabel = "Exploits" ];
-  VulnerabilityType -> AssetType [ xlabel = "Exists on" ];
-  ThreatType -> AssetType [ xlabel = "Threatens" ];
+  ThreatType -> VulnerabilityType [ xlabel = "exploits" ];
+  VulnerabilityType -> AssetType [ xlabel = "exists on" ];
+  ThreatType -> AssetType [ xlabel = "threatens" ];
 
   FeatureType -> Feature [ xlabel = "has type"];
-  Feature -> Mechanism [ xlabel = "implemented via" ];
-  VulnerabilityType -> Feature [ xlabel = "has type" dir = "back" ];
+  Feature -> Mechanism [ xlabel = "uses" ];
   VulnerabilityType -> Issue [ xlabel = "has type" dir = "back" ];
-  Issue -> Feature [ xlabel = "addresses" ];
+  Issue -> Package [ xlabel = "occurs in" ];
   AuditDocument -> Issue [ xlabel = "Reports"  ];
-  Feature -> Package [ xlabel = "depends on" ];
 
-  Project -> Instance
-  Instance -> Package
-  Instance -> Configuration [ xlabel = "has a" ];
+  Project -> Instance [ xlabel = "develops" ]
+  Instance -> Package [ xlabel = "is made of" ];
+  Instance -> Configuration [ xlabel = "is used with" ];
   Package -> Mechanism [ xlabel = "implements" ];
   Configuration -> Feature [ xlabel = "provides" ];
 
@@ -113,7 +174,7 @@ digraph openintegrityschema {
   Mechanism -> Specification [ xlabel = "has type"];
   Mechanism -> Protocol [ xlabel = "has type"];
   Mechanism -> Policy [ xlabel = "has type"];
-#  Intention -> Feature [ xlabel = "Enables" dir = "back" ];
+#  Intention -> Feature [ xlabel = "enables" dir = "back" ];
 
 }
 ```
