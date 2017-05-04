@@ -29,9 +29,7 @@ It focuses on facts or claims that are as objective as possible to enable more s
 
  - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness in CVE/CWE terminology). A Feature exists to address an actual `Issue` or a potential `Issue` (during the design phase, as part of a Threat Model).
 
-![](extension.png)
-
-```{viz}
+```plantuml
 digraph openintegrityschema {
  # rankdir=LR;
  ratio="0.5";
@@ -93,9 +91,7 @@ digraph openintegrityschema {
 
 ### Including Categories
 
-![](extension-details.png)
-
-```{viz}
+```plantuml
 digraph openintegrityschema {
   # rankdir=LR;
   ratio="0.5";
