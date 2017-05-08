@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<easketch>
+<header>
+<title>OpenIntegrity</title>
+<description/>
+<creationDate>2017-05-04T19:04:06</creationDate>
+<lastModificationDate>2017-05-08T10:35:49</lastModificationDate>
+<connectionParam name="pkFormat" value="id"/>
+<connectionParam name="database" value="OpenIntegrity"/>
+<connectionParam name="fkFormat" value="&lt;edge&gt;"/>
+<connectionParam name="quoteIdentifiers" value="false"/>
+</header>
+<entities>
+<entity name="Project" x="34" y="73">
+<attribute attributeTypeClass="easik.database.types.Varchar" name="id" size="255"/>
+</entity>
+<entity name="Instance" x="207" y="132">
+<attribute attributeTypeClass="easik.database.types.Varchar" name="id" size="255"/>
+</entity>
+<entity name="Package" x="376" y="202">
+<attribute attributeTypeClass="easik.database.types.Varchar" name="id" size="255"/>
+</entity>
+<entity name="Configuration" x="549" y="289">
+<attribute attributeTypeClass="easik.database.types.Varchar" name="id" size="255"/>
+</entity>
+<entity name="Asset" x="375" y="593"/>
+<entity name="Mechanism" x="678" y="534"/>
+<entity name="Feature" x="836" y="422"/>
+<entity name="Impact" x="1205" y="124"/>
+<entity name="AssetType" x="184" y="648"/>
+<entity name="VulnerabilityType" x="625" y="63"/>
+<entity name="Threat" x="959" y="319"/>
+<entity name="Functionality" x="1139" y="351"/>
+<entity name="Experience" x="1256" y="424"/>
+<entity name="Issue" x="401" y="833"/>
+<entity name="Documentation" x="198" y="949"/>
+<entity name="Vulnerability" x="815" y="194"/>
+<entity name="Specification" x="969" y="740"/>
+<entity name="Policy" x="881" y="809"/>
+<entity name="Protocol" x="795" y="866"/>
+</entities>
+<edges>
+<edge cascade="cascade" id="projectIsAsset" source="Project" target="Asset" type="injective"/>
+<edge cascade="cascade" id="instanceIsAsset" source="Instance" target="Asset" type="injective"/>
+<edge cascade="cascade" id="packageIsAsset" source="Package" target="Asset" type="injective"/>
+<edge cascade="cascade" id="configurationIsAsset" source="Configuration" target="Asset" type="injective"/>
+<edge cascade="cascade" id="hasInstances" source="Project" target="Instance" type="normal"/>
+<edge cascade="cascade" id="hasPackages" source="Instance" target="Package" type="normal"/>
+<edge cascade="cascade" id="hasConfigurations" source="Package" target="Configuration" type="normal"/>
+<edge cascade="cascade" id="isAssetOfType" source="Asset" target="AssetType" type="injective"/>
+<edge cascade="cascade" id="isVulnerabilityOfType" source="Vulnerability" target="VulnerabilityType" type="injective"/>
+<edge cascade="cascade" id="exploitationHasResultedIn" source="Threat" target="Impact" type="normal"/>
+<edge cascade="cascade" id="threatIsFeature" source="Threat" target="Feature" type="injective"/>
+<edge cascade="cascade" id="functionalityIsFeature" source="Functionality" target="Feature" type="injective"/>
+<edge cascade="cascade" id="experienceIsFeature" source="Experience" target="Feature" type="injective"/>
+<edge cascade="cascade" id="issueIsDocumentation" source="Issue" target="Documentation" type="injective"/>
+<edge cascade="cascade" id="specificationIsMechanism" source="Specification" target="Mechanism" type="injective"/>
+<edge cascade="cascade" id="policyIsMechanism" source="Policy" target="Mechanism" type="injective"/>
+<edge cascade="cascade" id="protocolIsMechanism" source="Protocol" target="Mechanism" type="injective"/>
+<edge cascade="set_null" id="implementedIn" source="Mechanism" target="Asset" type="partial"/>
+<edge cascade="set_null" id="providedBy" source="Feature" target="Mechanism" type="partial"/>
+</edges>
+<keys/>
+<constraints>
+<sumconstraint isVisible="true" x="389" y="559">
+<path codomain="Asset" domain="Configuration">
+<edgeref id="configurationIsAsset"/>
+</path>
+<path codomain="Asset" domain="Package">
+<edgeref id="packageIsAsset"/>
+</path>
+<path codomain="Asset" domain="Instance">
+<edgeref id="instanceIsAsset"/>
+</path>
+<path codomain="Asset" domain="Project">
+<edgeref id="projectIsAsset"/>
+</path>
+</sumconstraint>
+</constraints>
+</easketch>

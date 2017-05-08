@@ -11,6 +11,7 @@ It focuses on facts or claims that are as objective as possible to enable more s
  We [reviewed the literature](https://meta.openintegrity.org/store/schema/blob/master/modeling.md#software-security-privacy-ontologies) on security and privacy ontologies for requirements, modeling and other purposes. Are currently at the system boundary or out of scope: description of threats, attacks methods, impact, organisational aspects of risk management, endpoint security.
 
  From there we've identified key papers which provide relevant concepts. Specifically:
+  - [ONTOSEC]: A. Herzog, N. Shahmehri, C. Duma, An Ontology of Information Security, International Journal of Information Security and Privacy, 1(4):1-23, 2007.
   - [ONTOPRIV] : Gharib, Mohamad, Paolo Giorgini, and John Mylopoulos. "Ontologies for Privacy Requirements Engineering: A Systematic Literature Review." arXiv preprint arXiv:1611.10097 (2016).
   - [SOKSECUREMESSAGING] : Unger, Nik, et al. "SoK: Secure Messaging." 2015 IEEE Symposium on Security and Privacy. IEEE, 2015.
   - [ONTOMOBILE] : Beji, Sofien, and Nabil El Kadhi. "Security ontology proposal for mobile applications." 2009 Tenth International Conference on Mobile Data Management: Systems, Services and Middleware. IEEE, 2009.
@@ -22,6 +23,7 @@ It focuses on facts or claims that are as objective as possible to enable more s
    - Security Features, Usability Properties and Adoption Properties in [SOKSECUREMESSAGING]
    - Security Property in STAC
    - Privacy Goal & Privacy Requirements in [ONTOPRIV]
+   - Counter Measure and Goal in [ONTOSEC]
  - **Mechanism**: A technical or policy solution providing a feature. This corresponds to:
    - A concrete instance of a Scheme as defined in [SOKSECUREMESSAGING]
    - Concrete instances of Privacy Constraint, Privacy Mechanism or Privacy Policy in [ONTOPRIV]
@@ -76,15 +78,15 @@ digraph openintegrityschema {
 
  edge [fontsize="10.0" labeldistance="20" labelangle="30"];
 
- Feature -> Mechanism [ xlabel = "uses" ];
+ Mechanism -> Feature [ xlabel = "enabled" ];
  Issue -> Package [ xlabel = "occurs in" ];
  AuditDocument -> Issue [ xlabel = "Reports"  ];
 
  Project -> Instance [ xlabel = "develops" ]
  Instance -> Package [ xlabel = "is made of" ];
- Instance -> Configuration [ xlabel = "is used with" ];
+ Package -> Configuration [ xlabel = "is used with" ];
  Package -> Mechanism [ xlabel = "implements" ];
- Configuration -> Feature [ xlabel = "provides" ];
+# Configuration -> Feature [ xlabel = "provides" ];
 
 }
 ```
@@ -176,7 +178,149 @@ digraph openintegrityschema {
 ```
 
 
-
 [SOKSECUREMESSAGING]:  http://cacr.uwaterloo.ca/techreports/2015/cacr2015-02.pdf
 [ONTOPRIV]: https://arxiv.org/pdf/1611.10097.pdf
 [ONTOMOBILE]: https://05d0e13c-a-62cb3a1a-s-sites.googlegroups.com/site/nabilelkadhi/Publications-overview/conferences/SecurityOntologyworldcomp.pdf?attachauth=ANoY7coRmXAkTYwVlQ9DGf5OPYIF_emhsS4w-1EW_rNmSDTkIskNIm9TbZMdC-FXhHNQyeclYsIpgnX3Yln-tV-daDJfTi-fjJg4_qNBhuxiwPIjEiuYhfeC5qfj5nTIk_350_USk5bPsoH4ymr18Sy1TMJc_JwCuF0V6gSsHFmO4aDRehb6HjMGhaQ2mLWPrxTWYWInzbzYjhoWRqmJzGNCbzsc52l3yooMnv_xw6yMXJySC0xr07X8f3FPT-UPI1U8Qx4gUgPJNxoKi_wSMKoIqTXEcYd3nQ%3D%3D&attredirects=0
+
+## Code Lists
+
+### Mechanism Types
+
+  -
+
+
+### Vulnerability Types
+
+
+
+### Threat Types
+
+### CounteMeasures
+
+
+
+## Next
+
+Implementing an Asset Class which emcompasses Project, Instance, Package and Configuration will allow to assign Features and Mechanisms to the Asset class and make the model more expressive.
+
+
+Secrity and Privacy Features' Mechanisms are CounterMeasures or Vulnerabilities.
+
+
+
+```plantuml
+digraph openintegrityschema {
+  # rankdir=LR;
+  ratio="0.5";
+  size="12,12"
+  clusterMode="global";
+  edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+ 	node [shape = "circle"];
+  node [shape = "box" width="1.5"];
+
+  Feature, Mechanism [shape = "rect" width="1.5" style = "dashed" fontcolor="black"];
+  Asset, VulnerabilityType, AssetType, FeatureType, MechanismType, ThreatType [shape = "oval" width="1.5"];
+  Specification, Policy, Protocol, UX, Security, Functional, Privacy [shape = "oval" width="1.5" style = "dashed"];
+  Issue, AuditDocument [shape = "box" width="1.5" style="bold"];
+  Project, Instance, Configuration, Package [shape = "box" width="1.5" style="bold"];
+
+  SchemaNext [shape = "rect" width="1.5" style = "dashed" fontcolor="black"];
+  Schema [shape = "box" width="1.5" style="bold"];
+  Category [shape = "oval" width="1.5"];
+
+  graph [labelloc="t" fontsize="12.0" fontname="helvetica-bold"];
+
+  subgraph cluster_0 {
+    color=invis;
+#    Intention
+  }
+  subgraph cluster_02 {
+    label="Documentation";
+    AuditDocument
+    Issue
+  }
+  subgraph cluster_1 {
+    color=invis;
+    ThreatType
+    AssetType
+  }
+
+  subgraph cluster_12 {
+    label="Software";
+    Project
+    Instance
+    Package
+    Configuration
+    Asset
+  }
+  subgraph cluster_22 {
+    label="Feature";
+    Feature
+    Mechanism
+  }
+
+
+  subgraph cluster_011 {
+    color=invis;
+    FeatureType
+    UX
+    Functional
+    Security
+    Privacy
+  }
+
+
+  graph [labelloc="b" fontsize="12.0" fontname="helvetica-bold"];
+
+  subgraph cluster_4 {
+    label="Legend";
+    edge [color="invis"];
+    Schema -> SchemaNext -> Category;
+  }
+
+  edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+
+  Asset -> AssetType [ xlabel = "has a" dir = "back" ];
+
+  AssetType -> ThreatType [ xlabel = "threatens" ];
+  VulnerabilityType -> ThreatType [ xlabel = "exploits" ];
+  AssetType -> VulnerabilityType [ xlabel = "exists on" ];
+
+  FeatureType -> Feature [ xlabel = "has type"];
+  UX -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Security -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Privacy -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Functional -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Feature -> Mechanism [ xlabel = "depends on" ];
+  VulnerabilityType -> Mechanism [ xlabel = "has type" dir = "back" ];
+
+  Project -> Instance [ xlabel = "develops" ]
+  Instance -> Package [ xlabel = "is made of" ];
+  Package -> Configuration [ xlabel = "is used with" ];
+  Project -> Asset [ xlabel = "is a" style = "dashed"];
+  Instance -> Asset [ xlabel = "is a" style = "dashed"];
+  Package -> Asset [ xlabel = "is a" style = "dashed"];
+  Configuration -> Asset [ xlabel = "is a" style = "dashed"];
+  Asset -> Mechanism [ xlabel = "implements" ];
+#  Configuration -> Feature [ xlabel = "provides" ];
+
+  Mechanism -> MechanismType  [ xlabel = "has type"];
+  MechanismType -> Specification   [ xlabel = "is a" style = "dashed"];
+  MechanismType -> Protocol [ xlabel = "is a" style = "dashed"];
+  MechanismType -> Policy [ xlabel = "is a" style = "dashed"];
+#  Intention -> Feature [ xlabel = "enables" dir = "back" ];
+
+  Issue -> Mechanism [ xlabel = "documents" ];
+  AuditDocument -> Issue [ xlabel = "Reports"  ];
+
+}
+```
+
+
+![](modeling/secont.png)
+
+## Work in progress
+
+Aiming to formalise with a categorical data approach :
+
+![](modeling/sketch.png)
