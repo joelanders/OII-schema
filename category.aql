@@ -1,0 +1,202 @@
+typeside SqlTypeSide = literal {
+	java_types
+		Varchar = "java.lang.String"
+	java_constants
+		Varchar = "return input[0]"
+}
+
+schema OpenIntegrity_schema = literal : SqlTypeSide {
+	entities
+		Project Instance Package Configuration Asset Mechanism Feature Impact AssetType VulnerabilityType Threat Functionality Experience Issue Documentation Vulnerability Specification Policy Protocol
+	foreign_keys
+		projectIsAsset : Project -> Asset
+		instanceIsAsset : Instance -> Asset
+		packageIsAsset : Package -> Asset
+		configurationIsAsset : Configuration -> Asset
+		hasInstances : Project -> Instance
+		hasPackages : Instance -> Package
+		hasConfigurations : Package -> Configuration
+		isAssetOfType : Asset -> AssetType
+		isVulnerabilityOfType : Vulnerability -> VulnerabilityType
+		exploitationHasResultedIn : Threat -> Impact
+		threatIsFeature : Threat -> Feature
+		functionalityIsFeature : Functionality -> Feature
+		experienceIsFeature : Experience -> Feature
+		issueIsDocumentation : Issue -> Documentation
+		specificationIsMechanism : Specification -> Mechanism
+		policyIsMechanism : Policy -> Mechanism
+		protocolIsMechanism : Protocol -> Mechanism
+		implementedIn : Mechanism -> Asset
+		providedBy : Feature -> Mechanism
+	attributes
+		Project_id : Project -> Varchar
+		Instance_id : Instance -> Varchar
+		Package_id : Package -> Varchar
+		Configuration_id : Configuration -> Varchar
+}
+
+constraints OpenIntegrity_injective0 = literal : OpenIntegrity_schema {
+	forall
+		x:Project
+		y:Project
+	where
+		x.projectIsAsset = y.projectIsAsset
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective1 = literal : OpenIntegrity_schema {
+	forall
+		x:Instance
+		y:Instance
+	where
+		x.instanceIsAsset = y.instanceIsAsset
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective2 = literal : OpenIntegrity_schema {
+	forall
+		x:Package
+		y:Package
+	where
+		x.packageIsAsset = y.packageIsAsset
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective3 = literal : OpenIntegrity_schema {
+	forall
+		x:Configuration
+		y:Configuration
+	where
+		x.configurationIsAsset = y.configurationIsAsset
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective4 = literal : OpenIntegrity_schema {
+	forall
+		x:Asset
+		y:Asset
+	where
+		x.isAssetOfType = y.isAssetOfType
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective5 = literal : OpenIntegrity_schema {
+	forall
+		x:Vulnerability
+		y:Vulnerability
+	where
+		x.isVulnerabilityOfType = y.isVulnerabilityOfType
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective6 = literal : OpenIntegrity_schema {
+	forall
+		x:Threat
+		y:Threat
+	where
+		x.threatIsFeature = y.threatIsFeature
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective7 = literal : OpenIntegrity_schema {
+	forall
+		x:Functionality
+		y:Functionality
+	where
+		x.functionalityIsFeature = y.functionalityIsFeature
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective8 = literal : OpenIntegrity_schema {
+	forall
+		x:Experience
+		y:Experience
+	where
+		x.experienceIsFeature = y.experienceIsFeature
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective9 = literal : OpenIntegrity_schema {
+	forall
+		x:Issue
+		y:Issue
+	where
+		x.issueIsDocumentation = y.issueIsDocumentation
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective10 = literal : OpenIntegrity_schema {
+	forall
+		x:Specification
+		y:Specification
+	where
+		x.specificationIsMechanism = y.specificationIsMechanism
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective11 = literal : OpenIntegrity_schema {
+	forall
+		x:Policy
+		y:Policy
+	where
+		x.policyIsMechanism = y.policyIsMechanism
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_injective12 = literal : OpenIntegrity_schema {
+	forall
+		x:Protocol
+		y:Protocol
+	where
+		x.protocolIsMechanism = y.protocolIsMechanism
+->
+	where
+		x = y
+}
+
+constraints OpenIntegrity_constraints = literal : OpenIntegrity_schema {
+	imports
+		OpenIntegrity_injective0
+		OpenIntegrity_injective1
+		OpenIntegrity_injective2
+		OpenIntegrity_injective3
+		OpenIntegrity_injective4
+		OpenIntegrity_injective5
+		OpenIntegrity_injective6
+		OpenIntegrity_injective7
+		OpenIntegrity_injective8
+		OpenIntegrity_injective9
+		OpenIntegrity_injective10
+		OpenIntegrity_injective11
+		OpenIntegrity_injective12
+}
+
+/* Warnings:
+
+sum constraints not exported - AQL does not currently support sum constraints
+Not exported - partial edges.  Their AQL semantics is unclear
+*/
