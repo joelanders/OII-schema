@@ -429,6 +429,11 @@ Get's good marks on the Ontologies for Security Requirements Literature Survey
 
 http://sec.sba-research.org/webprotege/
 
+#### Security ontology proposal for mobile applications
+
+- [ONTOMOBILE] : Beji, Sofien, and Nabil El Kadhi. "Security ontology proposal for mobile applications." 2009 Tenth International Conference on Mobile Data Management: Systems, Services and Middleware. IEEE, 2009.
+
+![](/modeling/MechanismTypes.png)
 
 #### MITRE's Cyber Ontology
 

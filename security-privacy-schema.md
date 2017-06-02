@@ -19,115 +19,50 @@ It focuses on facts or claims that are as objective as possible to enable more s
 
 ## Proposed Definitions
 
- - **Feature**: High-level feature, which might express a security objective or privacy goal.
+ - `Feature`: High-level **capability** or **issue**, which might express a security objective or problem, a privacy goal.
+   - `Feature`s depend on `Mechanism`s which are (for technology mechanisms) themselves
+   - `Feature` exist in particular `Configuration`s.
+ - Correspondances in literature:
    - Security Features, Usability Properties and Adoption Properties in [SOKSECUREMESSAGING]
    - Security Property in STAC
    - Privacy Goal & Privacy Requirements in [ONTOPRIV]
    - Counter Measure and Goal in [ONTOSEC]
- - **Mechanism**: A technical or policy solution providing a feature. This corresponds to:
+
+> "This developer presents this security problem as a Feature."
+> "The lack of privacy of this project is one of its features"
+
+ - **Mechanism**: A technical or policy **component** providing a feature, or the **vulnerability** causing a problem.
+   - Technology **Mechanism**s are implemented in **Package**s
+   - Policy **Mechanism**s can be documented in **Document**s
+
+ - Correspondances in literature:
    - A concrete instance of a Scheme as defined in [SOKSECUREMESSAGING]
    - Concrete instances of Privacy Constraint, Privacy Mechanism or Privacy Policy in [ONTOPRIV]
    - Concrete instances of Mechanisms in [ONTOMOBILE]
 
- - **Issue**: An issue is a vulnerability or a usability problem or a lacking feature. The instance of a VulnerabilityType (equivalent to a Weakness in CVE/CWE terminology). A Feature exists to address an actual `Issue` or a potential `Issue` (during the design phase, as part of a Threat Model).
+When Mechanisms are causing an Issue (i.e. they are Vulnerabilities) they have a VulnerabilityType (equivalent to a Weakness in CVE/CWE terminology). A Feature exists to address an actual `Issue` or a potential `Issue` (during the design phase, as part of a Threat Model).
 
-```plantuml
-digraph openintegrityschema {
- # rankdir=LR;
- ratio="0.5";
- size="12,12"
- clusterMode="global";
- edge [fontsize="10.0" labeldistance="20" labelangle="30"];
-	node [shape = "circle"];
- node [shape = "box" width="1.5"];
- SchemaNext, Mechanism [shape = "rect" width="1.5" style = "dashed" fontcolor="black"];
- Schema, Feature, Project, Instance, Configuration, Package, Issue, AuditDocument [shape = "box" width="1.5" style="bold"];
+|         | Feature    | Mechanism     |
+|:--------|:-----------|:--------------|
+|         | Capability | Component     |
+| Negated | Issue      | Vulnerability |
 
- subgraph cluster_0 {
-   color=invis;
-#    Intention
- }
-
- subgraph cluster_12 {
-   color=invis;
-   Project
-   Instance
-   Package
- }
-
- subgraph cluster_02 {
-   color=invis;
-   AuditDocument
-   Issue
- }
-
-
- subgraph cluster_2 {
-   color=invis;
-   Feature
-   Mechanism
- }
-
- graph [labelloc="b" fontsize="12.0" fontname="helvetica-bold"];
-
- subgraph cluster_4 {
-   label="Legend";
-   edge [color="invis"];
-   Schema -> SchemaNext;
- }
-
- edge [fontsize="10.0" labeldistance="20" labelangle="30"];
-
- Mechanism -> Feature [ xlabel = "enabled" ];
- Issue -> Package [ xlabel = "occurs in" ];
- AuditDocument -> Issue [ xlabel = "Reports"  ];
-
- Project -> Instance [ xlabel = "develops" ]
- Instance -> Package [ xlabel = "is made of" ];
- Package -> Configuration [ xlabel = "is used with" ];
- Package -> Mechanism [ xlabel = "implements" ];
-# Configuration -> Feature [ xlabel = "provides" ];
-
-}
-```
-
-### Including Categories
+> From different contexts some features can be seen as capabilities or issues (from the adversary standpoint for instance), in the context of Open Integrity focuses on the provision of security and privacy features, and therefore Features are first expressed as positive expression of Capabilities centered on users, and the assertion of a a negative feature is considered an issue. There might be cases where this isn't simple. This could lead to certain similar concepts existing simultaneously as posited assertions and negated assertions.
 
 ```plantuml
 digraph openintegrityschema {
   # rankdir=LR;
   ratio="0.5";
   size="12,12"
-  clusterMode="global";
+  # clusterMode="global";
   edge [fontsize="10.0" labeldistance="20" labelangle="30"];
  	node [shape = "circle"];
   node [shape = "box" width="1.5"];
-  SchemaNext, Mechanism [shape = "rect" width="1.5" style = "dashed" fontcolor="black"];
-  Schema, Feature, Project, Instance, Configuration, Package, Issue, AuditDocument [shape = "box" width="1.5" style="bold"];
-  Category, VulnerabilityType, AssetType, FeatureType, MechanismType, ThreatType, Specification, Policy, Protocol [shape = "oval" width="1.5"];
+  Feature, Mechanism, Project, Instance, Configuration, Package [shape = "box" width="1.5" style="bold"];
 
   subgraph cluster_0 {
     color=invis;
 #    Intention
-  }
-
-  subgraph cluster_1 {
-    color=invis;
-    ThreatType
-    AssetType
-  }
-
-  subgraph cluster_12 {
-    color=invis;
-    Project
-    Instance
-    Package
-  }
-
-  subgraph cluster_02 {
-    color=invis;
-    AuditDocument
-    Issue
   }
 
 
@@ -135,68 +70,239 @@ digraph openintegrityschema {
     color=invis;
     Feature
     Mechanism
-    Specification
-    Policy
-    Protocol
+  }
+
+  subgraph cluster_12 {
+    color=invis;
+    Project
+    Instance
+    Configuration
+    Package
   }
 
   graph [labelloc="b" fontsize="12.0" fontname="helvetica-bold"];
 
-  subgraph cluster_4 {
-    label="Legend";
-    edge [color="invis"];
-    Schema -> SchemaNext -> Category;
-  }
+#  subgraph cluster_4 {
+#    label="Legend";
+#    edge [color="invis"];
+#    Schema -> SchemaNext -> Category;
+#  }
 
   edge [fontsize="10.0" labeldistance="20" labelangle="30"];
 
-  AssetType -> Project [ xlabel = "has a" dir = "back" ];
+  Feature -> Mechanism [ xlabel = "depends on" ];
 
-  ThreatType -> VulnerabilityType [ xlabel = "exploits" ];
-  VulnerabilityType -> AssetType [ xlabel = "exists on" ];
-  ThreatType -> AssetType [ xlabel = "threatens" ];
-
-  FeatureType -> Feature [ xlabel = "has type"];
-  Feature -> Mechanism [ xlabel = "uses" ];
-  VulnerabilityType -> Issue [ xlabel = "has type" dir = "back" ];
-  Issue -> Package [ xlabel = "occurs in" ];
-  AuditDocument -> Issue [ xlabel = "Reports"  ];
 
   Project -> Instance [ xlabel = "develops" ]
-  Instance -> Package [ xlabel = "is made of" ];
-  Instance -> Configuration [ xlabel = "is used with" ];
+  # Instance -> Package [ xlabel = "has" ];
+  Instance -> Configuration [ xlabel = "is made of" ];
+  Configuration -> Package [ xlabel = "depends on" ];
+  Feature -> Configuration [ xlabel = "provides" dir = "back" ];
   Package -> Mechanism [ xlabel = "implements" ];
-  Configuration -> Feature [ xlabel = "provides" ];
 
-  MechanismType -> Mechanism [ xlabel = "has type"];
-  Mechanism -> Specification [ xlabel = "has type"];
-  Mechanism -> Protocol [ xlabel = "has type"];
-  Mechanism -> Policy [ xlabel = "has type"];
-#  Intention -> Feature [ xlabel = "enables" dir = "back" ];
 
 }
 ```
 
 
+### Including Categories
+
+
+```plantuml
+digraph openintegrityschema {
+  # rankdir=LR;
+  ratio="0.5";
+  # clusterMode="global";
+  edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+ 	node [shape = "circle"];
+  node [shape = "box" width="1.5"];
+
+  VulnerabilityType, AssetType, FeatureType, MechanismType, ThreatType, Specification, Policy, Protocol, UX, Security, Functional, Privacy [shape = "oval" width="1.5" style = "dashed"];
+
+  #APIAbuse,ErrorHandling, CodeQuality, InputValidation,SecurityImplementation,TimeAndState,Environment [shape = "oval" width="1.5" style = "dashed"];
+
+  Feature, Mechanism, Project, Instance, Configuration, Package [shape = "box" width="1.5" style="bold"];
+
+  subgraph cluster_0 {
+    color=invis;
+#    Intention
+#
+  }
+
+  subgraph cluster_12 {
+    color=invis;
+    Project
+    Instance
+    Configuration
+    Package
+
+  }
+  subgraph cluster_2 {
+    color=invis;
+
+
+      subgraph cluster_12 {
+        color=invis;
+        UX
+        Functional
+        Security
+        Privacy
+
+      }
+
+    FeatureType
+    Feature
+    Mechanism
+    MechanismType
+
+    subgraph cluster_1 {
+      color=invis;
+#      AssetType
+      ThreatType
+      VulnerabilityType
+    }
+
+  }
+
+
+
+  graph [labelloc="b" fontsize="12.0" fontname="helvetica-bold"];
+
+#  subgraph cluster_4 {
+#    label="Legend";
+#    edge [color="invis"];
+#    Schema -> SchemaNext -> Category;
+#  }
+
+  edge [fontsize="10.0" labeldistance="20" labelangle="30"];
+
+  Feature -> Mechanism [ xlabel = "depends on" ];
+
+  Project -> Instance [ xlabel = "develops (1..n)" ]
+  Instance -> Configuration [ xlabel = "has (1..n)" ];
+  Configuration -> Package [ xlabel = "depends on" ];
+  Configuration -> Feature [ xlabel = "provides" ];
+  Package -> Mechanism [ xlabel = "implements" ];
+
+
+  FeatureType -> Feature [ xlabel = "has type"];
+  UX -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Security -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Privacy -> FeatureType [ xlabel = "is a" style = "dashed"];
+  Functional -> FeatureType [ xlabel = "is a" style = "dashed"];
+
+  Mechanism -> MechanismType  [ xlabel = "has type"];
+  MechanismType -> Specification   [ xlabel = "is a" style = "dashed"];
+  MechanismType -> Protocol [ xlabel = "is a" style = "dashed"];
+  MechanismType -> Policy [ xlabel = "is a" style = "dashed"];
+
+  ThreatType -> Feature [ xlabel = "can have" style = "dashed" dir = "back"];
+  VulnerabilityType -> Mechanism [ xlabel = "can have" dir = "back" style = "dashed"];
+
+  ThreatType -> VulnerabilityType [ xlabel = "exploits" style = "dashed"];
+  AssetType -> VulnerabilityType  [ xlabel = "exists on" style = "dashed" dir = "back"];
+  ThreatType -> AssetType [ xlabel = "threatens" style = "dashed"];
+
+  #Environment -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #APIAbuse -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #ErrorHandling -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #CodeQuality -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #InputValidation -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #SecurityImplementation -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+  #TimeAndState -> VulnerabilityType [ xlabel = "is a" style = "dashed"];
+
+
+
+}
+```
+
+### Specialisation
+
+A configuration is defined a particular project and instance.
+
+A feature exists independently, but can be specialised if required (i.e. Telegram's Conversation Security). Higher level features will be derived via Metrics.
+
+Mechanisms exists independently of Features and Configurations.
+
+*Implementation* aspects of mechanisms are derived from the Configuration pullback. I.e. a broken implementation can be represented via:
+ - A broekn configuration
+   - A negated security feature,
+     - linked to
+
+### Configuration / Feature
+
+ - The same package used in a different configuration will provide different features.
+ - Configuration depends on a set of packages.
+   - With that dependency they provide a feature.
+ - a Feature depends on Mechanisms but whether its available or not really depends on the Configuration, which itself depends on specific (versioned) packages and how they are assembled (i.e. the particular composition of packages is the Configuration).
+ - This should be extensible to include Usage modes in the Features (as part of the Feature n-ary relation).
+
+Features are n-ary relations that aim to represent a real world impact. As such they should be extended or qualifed by adding modifiers that help make their definition more precise. I think they are a pull-back.
+
+Configurations are meant to represent a particular assembly of software components. As such they are a higher level abstraction for the technical components of a software tool.
+
+Hierarchical package dependencies and Flat configuration package assembly:
+  - Packages are in a hierarchical tree of dependencies (which will be later qualified)
+  - They are also in sets of Configurations, where the Configuration represents an emerging property of interest provided by the set. The same set could be assembled into another configuration if it provides another emerging property of interest.
+
+
+
+### References
+
+[ONTOSEC]: https://www.researchgate.net/publication/220065815_An_Ontology_of_Information_Security / http://www.ida.liu.se/divisions/adit/security/projects/secont/
 [SOKSECUREMESSAGING]:  http://cacr.uwaterloo.ca/techreports/2015/cacr2015-02.pdf
 [ONTOPRIV]: https://arxiv.org/pdf/1611.10097.pdf
 [ONTOMOBILE]: https://05d0e13c-a-62cb3a1a-s-sites.googlegroups.com/site/nabilelkadhi/Publications-overview/conferences/SecurityOntologyworldcomp.pdf?attachauth=ANoY7coRmXAkTYwVlQ9DGf5OPYIF_emhsS4w-1EW_rNmSDTkIskNIm9TbZMdC-FXhHNQyeclYsIpgnX3Yln-tV-daDJfTi-fjJg4_qNBhuxiwPIjEiuYhfeC5qfj5nTIk_350_USk5bPsoH4ymr18Sy1TMJc_JwCuF0V6gSsHFmO4aDRehb6HjMGhaQ2mLWPrxTWYWInzbzYjhoWRqmJzGNCbzsc52l3yooMnv_xw6yMXJySC0xr07X8f3FPT-UPI1U8Qx4gUgPJNxoKi_wSMKoIqTXEcYd3nQ%3D%3D&attredirects=0
 
 ## Code Lists
 
+
+### Feature Types
+
+ - Security
+   - Trust Establishment
+   - Conversation Security
+ - Privacy
+   - Transport Privacy
+ - Functional
+ - Experience
+
+
 ### Mechanism Types
 
-  -
-
+ - Specification
+ - Protocol
+ - Algorithm
+ - Policy
 
 ### Vulnerability Types
 
+ - Environment - (2)
+ - Error Handling - (388)
+ - Fulfillment of API Contract ('API Abuse') - (227)
+ - Indicator of Poor Code Quality - (398)
+ - Input Validation and Representation - (1005)
+ - Insufficient Encapsulation - (485)
+ - Security Features - (254)
+ - Time and State - (361)
 
+https://cwe.mitre.org/data/definitions/700.html
 
 ### Threat Types
 
-### CounteMeasures
 
+### CounterMeasures
+
+## Additional Relations
+
+There are a number of qualified relations that might be important to express such as:
+ - Package dependency type (runtime, statically linked, dynamically linked, infrastructure, remote,...)
+ - Compositionality:
+   - composed of - for strict compositionality
+ - Packaging
+   - bundled with ? - for a packaging relation (also for protocols made of various mechanisms?)
+ - Relation
+   - related to - for loose association
 
 
 ## Next
@@ -212,7 +318,7 @@ Secrity and Privacy Features' Mechanisms are CounterMeasures or Vulnerabilities.
 digraph openintegrityschema {
   # rankdir=LR;
   ratio="0.5";
-  size="12,12"
+  # size="12,12"
   clusterMode="global";
   edge [fontsize="10.0" labeldistance="20" labelangle="30"];
  	node [shape = "circle"];
